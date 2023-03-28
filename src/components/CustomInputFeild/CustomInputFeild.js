@@ -13,6 +13,7 @@ const CustomInputFeild = ({
   validationType,
   check,
   onDataChange,
+  setValues,
 }) => {
   const [focus, setFocus] = useState(false);
 
@@ -25,6 +26,7 @@ const CustomInputFeild = ({
         if (reg1.test(value) === false) {
           setPassword(value);
           setCheck(false);
+          console.log('create Strong Password');
         } else {
           setPassword(value);
           setCheck(true);
@@ -43,14 +45,19 @@ const CustomInputFeild = ({
         </Text>
         <TextInput
           onFocus={() => setFocus(true)}
-          onBlur={() => setFocus(false)}
+          onBlur={
+            txt => setFocus(false)
+            /*   if(validationType){
+              validation(validationType,txt)
+            } */
+          }
           style={[
             focus
               ? styles.customInputFeildFocus
               : styles.customInputFeildOnBlur,
             styles.customInputFeild,
           ]}
-          onTextChange={txt => validation(validationType, txt)}
+          onChangeText={txt => setValues(txt)}
         />
       </View>
     </>
@@ -85,10 +92,12 @@ const styles = StyleSheet.create({
   },
   customInputFeild: {
     backgroundColor: '#3c4159',
-    height: hp('5%'),
+    height: hp('0'),
     fontSize: hp('3%'),
     paddingLeft: wp('3%'),
     color: '#fff',
+    flex: 1,
+    alignItems: 'center',
     borderRadius: 4,
   },
   validationText: {

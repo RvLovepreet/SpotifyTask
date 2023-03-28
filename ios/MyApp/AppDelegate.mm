@@ -1,11 +1,14 @@
 #import "AppDelegate.h"
 
 #import <React/RCTBundleURLProvider.h>
-
+#import "FirebaseCore"
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  //new code
+  FirebaseApp.configure()
+  //new code
   self.moduleName = @"MyApp";
   // You can add your custom initial props in the dictionary below.
   // They will be passed down to the ViewController used by React Native.
@@ -32,5 +35,20 @@
 {
   return true;
 }
+//new code 
+@main
+struct YourApp: App {
+  // register app delegate for Firebase setup
+  @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
 
+
+  var body: some Scene {
+    WindowGroup {
+      NavigationView {
+        ContentView()
+      }
+    }
+  }
+}
+//new code
 @end

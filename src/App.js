@@ -18,9 +18,9 @@ const App = () => (
      */}
     <PersistGate loading={null} persistor={persistor}>
       {/*    <ApplicationNavigator /> */}
-      {/*  <DemoScreen /> */}
-
-      <SpotifyNavigation />
+    {/*   <DemoScreen />
+ */}
+     <SpotifyNavigation />
     </PersistGate>
   </Provider>
 );

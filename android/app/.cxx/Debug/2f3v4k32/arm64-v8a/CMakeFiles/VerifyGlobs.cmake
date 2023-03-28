@@ -12,6 +12,30 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   file(TOUCH_NOCREATE "/Users/chicmic/Desktop/reactnative/Project/SpotifyTask/android/app/.cxx/Debug/2f3v4k32/arm64-v8a/CMakeFiles/cmake.verify_globs")
 endif()
 
+# react_codegen_SRCS at /Users/chicmic/Desktop/reactnative/Project/SpotifyTask/node_modules/@react-native-community/slider/android/build/generated/source/codegen/jni/CMakeLists.txt:9 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "/Users/chicmic/Desktop/reactnative/Project/SpotifyTask/node_modules/@react-native-community/slider/android/build/generated/source/codegen/jni/*.cpp")
+set(OLD_GLOB
+  "/Users/chicmic/Desktop/reactnative/Project/SpotifyTask/node_modules/@react-native-community/slider/android/build/generated/source/codegen/jni/ReactSlider-generated.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "/Users/chicmic/Desktop/reactnative/Project/SpotifyTask/android/app/.cxx/Debug/2f3v4k32/arm64-v8a/CMakeFiles/cmake.verify_globs")
+endif()
+
+# react_codegen_SRCS at /Users/chicmic/Desktop/reactnative/Project/SpotifyTask/node_modules/@react-native-community/slider/android/build/generated/source/codegen/jni/CMakeLists.txt:9 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "/Users/chicmic/Desktop/reactnative/Project/SpotifyTask/node_modules/@react-native-community/slider/android/build/generated/source/codegen/jni/react/renderer/components/ReactSlider/*.cpp")
+set(OLD_GLOB
+  "/Users/chicmic/Desktop/reactnative/Project/SpotifyTask/node_modules/@react-native-community/slider/android/build/generated/source/codegen/jni/react/renderer/components/ReactSlider/EventEmitters.cpp"
+  "/Users/chicmic/Desktop/reactnative/Project/SpotifyTask/node_modules/@react-native-community/slider/android/build/generated/source/codegen/jni/react/renderer/components/ReactSlider/Props.cpp"
+  "/Users/chicmic/Desktop/reactnative/Project/SpotifyTask/node_modules/@react-native-community/slider/android/build/generated/source/codegen/jni/react/renderer/components/ReactSlider/ReactSliderJSI-generated.cpp"
+  "/Users/chicmic/Desktop/reactnative/Project/SpotifyTask/node_modules/@react-native-community/slider/android/build/generated/source/codegen/jni/react/renderer/components/ReactSlider/ShadowNodes.cpp"
+  "/Users/chicmic/Desktop/reactnative/Project/SpotifyTask/node_modules/@react-native-community/slider/android/build/generated/source/codegen/jni/react/renderer/components/ReactSlider/States.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "/Users/chicmic/Desktop/reactnative/Project/SpotifyTask/android/app/.cxx/Debug/2f3v4k32/arm64-v8a/CMakeFiles/cmake.verify_globs")
+endif()
+
 # react_codegen_SRCS at /Users/chicmic/Desktop/reactnative/Project/SpotifyTask/node_modules/react-native-gesture-handler/android/build/generated/source/codegen/jni/CMakeLists.txt:9 (file)
 file(GLOB NEW_GLOB LIST_DIRECTORIES true "/Users/chicmic/Desktop/reactnative/Project/SpotifyTask/node_modules/react-native-gesture-handler/android/build/generated/source/codegen/jni/*.cpp")
 set(OLD_GLOB

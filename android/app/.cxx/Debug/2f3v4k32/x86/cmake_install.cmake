@@ -44,6 +44,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
+  include("/Users/chicmic/Desktop/reactnative/Project/SpotifyTask/android/app/.cxx/Debug/2f3v4k32/x86/ReactSlider_autolinked_build/cmake_install.cmake")
   include("/Users/chicmic/Desktop/reactnative/Project/SpotifyTask/android/app/.cxx/Debug/2f3v4k32/x86/rngesturehandler_codegen_autolinked_build/cmake_install.cmake")
   include("/Users/chicmic/Desktop/reactnative/Project/SpotifyTask/android/app/.cxx/Debug/2f3v4k32/x86/reactnativemmkv_autolinked_build/cmake_install.cmake")
   include("/Users/chicmic/Desktop/reactnative/Project/SpotifyTask/android/app/.cxx/Debug/2f3v4k32/x86/safeareacontext_autolinked_build/cmake_install.cmake")

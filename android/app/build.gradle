@@ -1,6 +1,8 @@
 apply plugin: "com.android.application"
 apply plugin: "com.facebook.react"
-
+//new code
+apply plugin: 'com.google.gms.google-services'
+//new code
 import com.android.build.OutputFile
 
 /**
@@ -165,6 +167,10 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+    //new code
+    implementation platform('com.google.firebase:firebase-bom:31.2.3')
+    //new code
+
 }
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
