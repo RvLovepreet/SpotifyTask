@@ -25,10 +25,12 @@
     "react-native-gesture-handler": "^2.9.0",
     "react-native-mmkv": "^2.6.2",
     "react-native-reanimated": "^3.0.0-rc.10",
+    "react-native-rename": "^3.2.12",
     "react-native-safe-area-context": "^4.5.0",
     "react-native-screens": "^3.20.0",
     "react-redux": "^8.0.5",
-    "redux-persist": "^6.0.0"
+    "redux-persist": "^6.0.0",
+    "spotify": "^0.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
