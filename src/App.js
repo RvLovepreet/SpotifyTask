@@ -17,11 +17,11 @@ const App = () => (
      * @see https://github.com/rt2zz/redux-persist/blob/master/docs/PersistGate.md
      */}
     <PersistGate loading={null} persistor={persistor}>
-      <ApplicationNavigator />
+      {/*   <ApplicationNavigator /> */}
       {/*   <DemoScreen />
        */}
 
-      {/*   <SpotifyNavigation /> */}
+      <SpotifyNavigation />
     </PersistGate>
   </Provider>
 );

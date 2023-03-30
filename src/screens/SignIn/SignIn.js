@@ -1,21 +1,21 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import { CustomHeader, CustomInputFeild, CustomBtn } from '../../components';
 import { styles } from '../style';
-import { constent ,Collections,navigationScreen} from '../../shared/constent';
-import firestore from '@react-native-firebase/firestore';
+import { constent, Collections, navigationScreen } from '../../shared/constent';
+// import firestore from '@react-native-firebase/firestore';
 const SignIn = ({ navigation }) => {
   const [userEmail, setEmail] = useState();
   const [userPassword, setPassword] = useState();
-  const getUser = () => {
-    const user = firestore()
+  /*const getUser = () => {
+     const user = firestore()
       .collection(Collections.Users)
       .doc(userEmail)
       .get()
       .then(documentSnapshot => {
         console.log(documentSnapshot.exists);
         if (user && userPassword === documentSnapshot.data().password) {
-        /*   console.log('check 1') */
+          /*   console.log('check 1')
           navigation.navigate(navigationScreen.PlayListScreen);
         } else {
           alert(constent.InvalidUser);
@@ -24,7 +24,7 @@ const SignIn = ({ navigation }) => {
       .catch(err => {
         alert(constent.InvalidUser);
       });
-  };
+  }; */
 
   return (
     <>
@@ -32,13 +32,24 @@ const SignIn = ({ navigation }) => {
         <CustomHeader title={constent.SignIn} />
         <View style={styles.containerContent}>
           <View style={styles.inputFieldContainer}>
-            <CustomInputFeild title={constent.Name} setValues={txt => setEmail(txt)} />
-            <CustomInputFeild title={constent.MobileNo}  setValues={txt => setPassword(txt)} />
+            <CustomInputFeild
+              title={constent.Name}
+              setValues={txt => setEmail(txt)}
+            />
+            <CustomInputFeild
+              title={constent.MobileNo}
+              setValues={txt => setPassword(txt)}
+            />
           </View>
           <View style={styles.btnContainer}>
-          <CustomBtn onPress={() => getUser()} title={constent.SignIn} />
+            <CustomBtn
+              onPress={() =>
+                navigation.navigate(navigationScreen.PlayListScreen)
+              }
+              title={constent.SignIn}
+            />
           </View>
-          <Text onPress={() => navigation.navigate('SignUp')}>Hello World</Text>
+          <Text onPress={() => navigation.navigate('SignIn')}>Hello World</Text>
         </View>
       </View>
     </>

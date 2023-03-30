@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { View, Text, SafeAreaView } from 'react-native';
-import firestore from '@react-native-firebase/firestore';
-/* import database from '@react-native-firebase/database'; */
-import { doc, setDoc } from 'firebase/firestore';
+// import firestore from '@react-native-firebase/firestore';
+// import { doc, setDoc } from 'firebase/firestore';
 const DemoScreen = () => {
   useEffect(() => {
     /*    setData(); */

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text } from 'react-native';
-import firestore from '@react-native-firebase/firestore';
+import { View, Text, TouchableOpacity } from 'react-native';
+/* import firestore from '@react-native-firebase/firestore'; */
 import { constent, navigationScreen, Collections } from '../../shared/constent';
 import { CustomHeader, CustomBtn, CustomInputFeild } from '../../components';
 import { styles } from '../style';
@@ -10,17 +10,17 @@ const SignUp = ({ navigation }) => {
   const [useremail, setEmail] = useState();
   const [usermob, setMob] = useState();
   const [userpassword, setPassword] = useState();
-  const goToNext = () => {
+  /*  const goToNext = () => {
     if (setData()) {
       navigation.navigate(navigationScreen.SignInScreen);
     } else {
       alert(constent.UnableCreateUser);
     }
-  };
+  }; */
 
   //set data
 
-  const setData = async () => {
+  /*  const setData = async () => {
     try {
       const data = await firestore()
         .collection(Collections.Users)
@@ -36,7 +36,7 @@ const SignUp = ({ navigation }) => {
       console.log(err);
       return err;
     }
-  };
+  }; */
 
   return (
     <>
@@ -73,7 +73,13 @@ const SignUp = ({ navigation }) => {
             />
           </View>
           <View style={styles.btnContainer}>
-            <CustomBtn onPress={() => goToNext()} title={constent.SignIn} />
+            <CustomBtn
+              onPress={() => {
+                console.log('check 1');
+                navigation.navigate(navigationScreen.SignInScreen);
+              }}
+              title={constent.SignIn}
+            />
           </View>
           <View style={styles.alreadyUserContainer}>
             <Text>
@@ -81,7 +87,10 @@ const SignUp = ({ navigation }) => {
                 {constent.AlreadyUser}
               </Text>
               <Text
-                onPress={() => goToNext()}
+                onPress={() => {
+                  console.log('check 1');
+                  navigation.navigate(navigationScreen.SignInScreen);
+                }}
                 style={[styles.alreadyUserContent, styles.alreadyUserSignIn]}
               >
                 {constent.SignIn}
