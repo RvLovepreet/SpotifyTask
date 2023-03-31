@@ -6,7 +6,14 @@ import {
 
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 
-const CustomSongListItem = ({ title, lyrics, src }) => {
+const CustomSongListItem = ({
+  title,
+  lyrics,
+  src,
+  onPlay,
+  onPause,
+  addFav,
+}) => {
   return (
     <>
       <TouchableOpacity>
@@ -15,6 +22,11 @@ const CustomSongListItem = ({ title, lyrics, src }) => {
           <View style={styles.SongContent}>
             <Text style={styles.SongTitle}>{title}</Text>
             <Text style={styles.Lyrics}>{lyrics}</Text>
+            <Text>
+              <Text onPress={onPlay}>Play</Text>
+              <Text onPress={onPause}>pause</Text>
+              <Text onPress={addFav}>Add Fav</Text>
+            </Text>
           </View>
         </View>
       </TouchableOpacity>

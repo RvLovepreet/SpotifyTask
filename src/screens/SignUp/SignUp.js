@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-/* import firestore from '@react-native-firebase/firestore'; */
+import React, { useState } from 'react';
+import { View, Text } from 'react-native';
+import firestore from '@react-native-firebase/firestore';
 import { constent, navigationScreen, Collections } from '../../shared/constent';
 import { CustomHeader, CustomBtn, CustomInputFeild } from '../../components';
 import { styles } from '../style';
@@ -10,33 +10,30 @@ const SignUp = ({ navigation }) => {
   const [useremail, setEmail] = useState();
   const [usermob, setMob] = useState();
   const [userpassword, setPassword] = useState();
-  /*  const goToNext = () => {
+  const goToNext = () => {
     if (setData()) {
       navigation.navigate(navigationScreen.SignInScreen);
     } else {
       alert(constent.UnableCreateUser);
     }
-  }; */
+  };
 
   //set data
 
-  /*  const setData = async () => {
+  const setData = async () => {
     try {
-      const data = await firestore()
-        .collection(Collections.Users)
-        .doc(useremail)
-        .set({
-          name: username,
-          email: useremail,
-          password: userpassword,
-          phone: usermob,
-        });
+      await firestore().collection(Collections.Users).doc(useremail).set({
+        name: username,
+        email: useremail,
+        password: userpassword,
+        phone: usermob,
+      });
       return true;
     } catch (err) {
       console.log(err);
       return err;
     }
-  }; */
+  };
 
   return (
     <>
@@ -75,8 +72,7 @@ const SignUp = ({ navigation }) => {
           <View style={styles.btnContainer}>
             <CustomBtn
               onPress={() => {
-                console.log('check 1');
-                navigation.navigate(navigationScreen.SignInScreen);
+                goToNext();
               }}
               title={constent.SignIn}
             />
@@ -88,7 +84,6 @@ const SignUp = ({ navigation }) => {
               </Text>
               <Text
                 onPress={() => {
-                  console.log('check 1');
                   navigation.navigate(navigationScreen.SignInScreen);
                 }}
                 style={[styles.alreadyUserContent, styles.alreadyUserSignIn]}

@@ -1,5 +1,8 @@
 apply plugin: "com.android.application"
 apply plugin: "com.facebook.react"
+//new code
+apply plugin: 'com.google.gms.google-services'
+//new code
 
 import com.android.build.OutputFile
 
@@ -149,6 +152,9 @@ android {
 }
 
 dependencies {
+    //new code
+    implementation platform('com.google.firebase:firebase-bom:31.3.0')
+    //new code
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
 

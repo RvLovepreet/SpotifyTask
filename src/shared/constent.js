@@ -1,6 +1,7 @@
 export const constent = {
   SignUp: 'Sign Up',
   SignIn: 'Sign In',
+  SongList: 'Latest Song',
   Name: 'Name',
   Email: 'Email',
   Password: 'Password',
@@ -13,6 +14,7 @@ export const constent = {
 };
 export const Collections = {
   Users: 'users',
+  SongList: 'songList',
 };
 
 export const navigationScreen = {

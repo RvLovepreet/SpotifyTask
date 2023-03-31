@@ -109,35 +109,35 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "appmodules::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-appmodules-Debug-efbdbc7ab4482eacf06a.json",
+					"jsonFile" : "target-appmodules-Debug-41be8ea9a843cfded31d.json",
 					"name" : "appmodules",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 2,
 					"id" : "react_codegen_reactnativemmkv::@53a90ad335aa3dba27a5",
-					"jsonFile" : "target-react_codegen_reactnativemmkv-Debug-835e3e6347efc15aa07d.json",
+					"jsonFile" : "target-react_codegen_reactnativemmkv-Debug-74c8f8b4fe305ba1007b.json",
 					"name" : "react_codegen_reactnativemmkv",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 1,
 					"id" : "react_codegen_rngesturehandler_codegen::@39f233abcd2c728bc6ec",
-					"jsonFile" : "target-react_codegen_rngesturehandler_codegen-Debug-bac3d2e0ba6e4352dcbc.json",
+					"jsonFile" : "target-react_codegen_rngesturehandler_codegen-Debug-515774dc474318497958.json",
 					"name" : "react_codegen_rngesturehandler_codegen",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 4,
 					"id" : "react_codegen_rnscreens::@25bcbd507e98d3a854ad",
-					"jsonFile" : "target-react_codegen_rnscreens-Debug-c5f60f12d50b524dd1a9.json",
+					"jsonFile" : "target-react_codegen_rnscreens-Debug-fe44bfe62231896a2053.json",
 					"name" : "react_codegen_rnscreens",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 3,
 					"id" : "react_codegen_safeareacontext::@7984cd80db47aa7b952a",
-					"jsonFile" : "target-react_codegen_safeareacontext-Debug-a35c9804270ac869efd4.json",
+					"jsonFile" : "target-react_codegen_safeareacontext-Debug-38fc7780890d510b9df7.json",
 					"name" : "react_codegen_safeareacontext",
 					"projectIndex" : 0
 				}
@@ -147,7 +147,7 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/Users/chicmic/Desktop/reactnative/cloneProject/Spotify/android/app/.cxx/Debug/5m4d6513/x86",
+		"build" : "/Users/chicmic/Desktop/reactnative/cloneProject/Spotify/android/app/.cxx/Debug/5m4d6513/armeabi-v7a",
 		"source" : "/Users/chicmic/Desktop/reactnative/cloneProject/Spotify/node_modules/react-native/ReactAndroid/cmake-utils/default-app-setup"
 	},
 	"version" : 
