@@ -60,6 +60,30 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   file(TOUCH_NOCREATE "/Users/chicmic/Desktop/reactnative/cloneProject/Spotify/android/app/.cxx/Debug/5m4d6513/x86/CMakeFiles/cmake.verify_globs")
 endif()
 
+# react_codegen_SRCS at /Users/chicmic/Desktop/reactnative/cloneProject/Spotify/node_modules/react-native-pager-view/android/build/generated/source/codegen/jni/CMakeLists.txt:9 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "/Users/chicmic/Desktop/reactnative/cloneProject/Spotify/node_modules/react-native-pager-view/android/build/generated/source/codegen/jni/*.cpp")
+set(OLD_GLOB
+  "/Users/chicmic/Desktop/reactnative/cloneProject/Spotify/node_modules/react-native-pager-view/android/build/generated/source/codegen/jni/RNCViewPager-generated.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "/Users/chicmic/Desktop/reactnative/cloneProject/Spotify/android/app/.cxx/Debug/5m4d6513/x86/CMakeFiles/cmake.verify_globs")
+endif()
+
+# react_codegen_SRCS at /Users/chicmic/Desktop/reactnative/cloneProject/Spotify/node_modules/react-native-pager-view/android/build/generated/source/codegen/jni/CMakeLists.txt:9 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "/Users/chicmic/Desktop/reactnative/cloneProject/Spotify/node_modules/react-native-pager-view/android/build/generated/source/codegen/jni/react/renderer/components/RNCViewPager/*.cpp")
+set(OLD_GLOB
+  "/Users/chicmic/Desktop/reactnative/cloneProject/Spotify/node_modules/react-native-pager-view/android/build/generated/source/codegen/jni/react/renderer/components/RNCViewPager/EventEmitters.cpp"
+  "/Users/chicmic/Desktop/reactnative/cloneProject/Spotify/node_modules/react-native-pager-view/android/build/generated/source/codegen/jni/react/renderer/components/RNCViewPager/Props.cpp"
+  "/Users/chicmic/Desktop/reactnative/cloneProject/Spotify/node_modules/react-native-pager-view/android/build/generated/source/codegen/jni/react/renderer/components/RNCViewPager/RNCViewPagerJSI-generated.cpp"
+  "/Users/chicmic/Desktop/reactnative/cloneProject/Spotify/node_modules/react-native-pager-view/android/build/generated/source/codegen/jni/react/renderer/components/RNCViewPager/ShadowNodes.cpp"
+  "/Users/chicmic/Desktop/reactnative/cloneProject/Spotify/node_modules/react-native-pager-view/android/build/generated/source/codegen/jni/react/renderer/components/RNCViewPager/States.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "/Users/chicmic/Desktop/reactnative/cloneProject/Spotify/android/app/.cxx/Debug/5m4d6513/x86/CMakeFiles/cmake.verify_globs")
+endif()
+
 # LIB_CUSTOM_SRCS at /Users/chicmic/Desktop/reactnative/cloneProject/Spotify/node_modules/react-native-safe-area-context/android/src/main/jni/CMakeLists.txt:21 (file)
 file(GLOB NEW_GLOB LIST_DIRECTORIES true "/Users/chicmic/Desktop/reactnative/cloneProject/Spotify/node_modules/react-native-safe-area-context/android/src/main/jni/*.cpp")
 set(OLD_GLOB

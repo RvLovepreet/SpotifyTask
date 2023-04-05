@@ -34,6 +34,34 @@ const DemoScreen = () => {
     }
   }; */
 
+  //4 aprit 2023
+  /* useEffect(() => {
+    navigation.addListener('focus', () => {
+      console.log('I am rendering');
+      setList();
+      console.log('Ii am rendering');
+    });
+  }, [navigation]);
+
+  useEffect(() => {}, [songList]);
+  const setList = async () => {
+    console.log('1 am in setList');
+    console.log(songList, 'song List');
+    try {
+      const data = await TrackPlayer.getQueue();
+      console.log(songList, 'check 1');
+      console.log('no of Songs : ', data.length);
+      await TrackPlayer.reset();
+      const data1 = await TrackPlayer.getQueue();
+      console.log('no of song', data1.length);
+      await TrackPlayer.add(songList);
+      const data3 = await TrackPlayer.getQueue();
+      console.log('no of song', data3);
+    } catch (er) {
+      console.log(er);
+    }
+  }; */
+
   return (
     <>
       <SafeAreaView>

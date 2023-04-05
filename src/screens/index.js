@@ -1,4 +1,8 @@
 export { default as Startup } from './Startup/Startup';
+export { default as CreatePlayList } from './CreatePlayList/CreatePlayList';
+export { default as PlayList } from './PlayList/PlayList';
+export { default as FavSong } from './FavSong/FavSong';
+export { default as ProfileSongScreen } from './ProfileSongScreen/ProfileSongScreen';
 export { default as Example } from './Example/Example';
 export { default as SignUp } from './SignUp/SignUp';
 export { default as SignIn } from './SignIn/SignIn';

@@ -1,22 +1,59 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList } from 'react-native';
-import { CustomHeader, CustomSongListItem } from '../../components';
-import { constent, Collections } from '../../shared/constent';
-import { songStore } from '../../store/songStore/songStore';
+import { View, FlatList } from 'react-native';
+import { CustomSongListItem } from '../../components';
+import { Collections } from '../../shared/constent';
 import TrackPlayer, { Capability } from 'react-native-track-player';
 import firestore from '@react-native-firebase/firestore';
 import { styles } from '../style';
-
-const SongListScreen = ({ navigation, route }) => {
+import { useSelector, useDispatch } from 'react-redux';
+import { addFavSong } from '../../store/userSlice/userSlice';
+const SongListScreen = ({ navigation }) => {
   const [songList, setSongList] = useState();
-  const { user } = route.params;
-  console.log(typeof user);
+  const user = useSelector(data => data.user);
+  console.log(user);
+  const dispatch = useDispatch();
   useEffect(() => {
     setUpPlayer();
   }, []);
+  useEffect(() => {}, [songList]);
   useEffect(() => {
-    console.log(songList, 'check for list in useEffect');
-  }, [songList]);
+    navigation.addListener('focus', () => {
+      console.log('I am rendering');
+      console.log(songList, 'song list 1');
+      setList();
+      console.log('Ii am rendering');
+    });
+  }, [navigation]);
+
+  const setList = async () => {
+    console.log('1 am in setList');
+    console.log(songList, 'song List');
+    try {
+      const data = await TrackPlayer.getQueue();
+      console.log(songList, 'check 1');
+      console.log('no of Songs : ', data.length);
+      await TrackPlayer.reset();
+      const data1 = await TrackPlayer.getQueue();
+      console.log('no of song', data1.length);
+      await TrackPlayer.add(songList);
+      const data3 = await TrackPlayer.getQueue();
+      console.log('no of song', data3);
+    } catch (er) {
+      console.log(er);
+    }
+  };
+  /*  const addFav1 = songTitle => {
+    console.log(songTitle);
+    console.log('data comes from redux store', user);
+    let data = user.favSong;
+    data = [...data, songTitle];
+    console.log(data);
+    user.favSong = data;
+    console.log(user);
+    //  favSongList.push(songTitle);
+   // console.log(favSongList);
+    dispatch(addFavSong(user));
+  }; */
   const addFav = async songTitle => {
     console.log('check 1');
     try {
@@ -35,6 +72,7 @@ const SongListScreen = ({ navigation, route }) => {
     try {
       const list = await getSongList();
       setSongList(list);
+      console.log(list);
       await TrackPlayer.setupPlayer();
       await TrackPlayer.updateOptions({
         // Media controls capabilities
@@ -45,12 +83,13 @@ const SongListScreen = ({ navigation, route }) => {
           Capability.SkipToPrevious,
           Capability.Stop,
         ],
-
         // Capabilities that will show up when the notification is in the compact form on Android
-        compactCapabilities: [Capability.Play, Capability.Pause],
+        //   compactCapabilities: [Capability.Play, Capability.Pause],
         // Icons for the notification on Android (if you don't like the default ones)
       });
       await TrackPlayer.add(list);
+      const data = await TrackPlayer.getQueue();
+      console.log(data, 'song queue');
     } catch (err) {
       console.log(err);
     }
@@ -70,28 +109,31 @@ const SongListScreen = ({ navigation, route }) => {
   return (
     <>
       <View style={styles.container}>
-        <CustomHeader title={constent.SongList} />
-        <View style={styles.containerContent}>
-          <FlatList
-            data={songList}
-            renderItem={({ item, index }) => (
-              <>
-                <CustomSongListItem
-                  onPlay={() => {
-                    TrackPlayer.skip(index);
-                    TrackPlayer.play();
-                  }}
-                  onPause={() => TrackPlayer.pause()}
-                  addFav={() => addFav(item.title)}
-                  title={item.title}
-                  lyrics={item.artist}
-                  src={{ uri: item.artwork }}
-                />
-              </>
-            )}
-          />
-        </View>
-        <Text onPress={() => navigation.goBack()}>SongListScreen</Text>
+        {/*   <CustomHeader title={constent.SongList} /> */}
+
+        <FlatList
+          data={songList}
+          renderItem={({ item, index }) => (
+            <>
+              <CustomSongListItem
+                onPlay={async () => {
+                  await TrackPlayer.reset();
+                  await TrackPlayer.add(songList);
+                  const data = await TrackPlayer.getQueue();
+                  console.log(data, 'song queue');
+                  console.log('play 1');
+                  await TrackPlayer.skip(index);
+                  await TrackPlayer.play();
+                }}
+                onPause={() => TrackPlayer.pause()}
+                addFav={() => addFav(item.title)}
+                title={item.title}
+                lyrics={item.artist}
+                src={{ uri: item.artwork }}
+              />
+            </>
+          )}
+        />
       </View>
     </>
   );

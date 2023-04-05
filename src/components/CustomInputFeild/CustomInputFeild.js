@@ -4,63 +4,42 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-
-const CustomInputFeild = ({
-  title,
-  required,
-  setPassword,
-  setCheck,
-  validationType,
-  check,
-  onDataChange,
-  setValues,
-}) => {
+const CustomInputFeild = ({ title, required, setValues, error, value }) => {
   const [focus, setFocus] = useState(false);
-
-  const validation = (checktype, value) => {
-    console.log(checktype);
-    switch (checktype) {
-      case 'Password' || 'password' || 'PASSWORD':
-        let reg1 =
-          /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;
-        if (reg1.test(value) === false) {
-          setPassword(value);
-          setCheck(false);
-          console.log('create Strong Password');
-        } else {
-          setPassword(value);
-          setCheck(true);
-        }
-        break;
-      default:
-        break;
+  const [err, setErr] = useState(false);
+  const check = () => {
+    if (value === undefined) {
+      console.log('okk');
+    } else {
+      value.length ? setErr(false) : setErr(true);
     }
   };
   return (
-    <>
-      <View style={styles.customInputFeildContainer}>
-        <Text style={styles.customInputFeildLable}>
-          {title}
-          {required ? <Text style={styles.requiredSign}>*</Text> : null}
-        </Text>
-        <TextInput
-          onFocus={() => setFocus(true)}
-          onBlur={
-            txt => setFocus(false)
-            /*   if(validationType){
-              validation(validationType,txt)
-            } */
-          }
-          style={[
-            focus
-              ? styles.customInputFeildFocus
-              : styles.customInputFeildOnBlur,
-            styles.customInputFeild,
-          ]}
-          onChangeText={txt => setValues(txt)}
-        />
-      </View>
-    </>
+    <View style={styles.customInputFeildContainer}>
+      <Text style={styles.customInputFeildLable}>
+        {title}
+        {required ? <Text style={styles.requiredSign}>*</Text> : null}
+      </Text>
+      <TextInput
+        onFocus={() => setFocus(true)}
+        onBlur={() => {
+          setFocus(false);
+          check();
+        }}
+        style={[
+          focus ? styles.customInputFeildFocus : styles.customInputFeildOnBlur,
+          styles.customInputFeild,
+        ]}
+        onChangeText={txt => {
+          setValues(txt);
+          setErr(false);
+        }}
+      />
+      <Text style={{ height: 15 }}>
+        {err ? <Text style={styles.checkText}>required</Text> : null}
+        <Text style={styles.checkText}>{error}</Text>
+      </Text>
+    </View>
   );
 };
 export default CustomInputFeild;
@@ -68,12 +47,11 @@ const styles = StyleSheet.create({
   customInputFeildContainer: {
     position: 'relative',
     width: '100%',
-    height: hp('10%'),
+    height: hp('12%'),
     display: 'flex',
-    marginTop: hp('2%'),
+    marginTop: hp('.5%'),
+    marginBottom: hp('.5%'),
     justifyContent: 'space-between',
-    /*     borderColor: '#fff',
-    backgroundColor: '#fff', */
   },
   customInputFeildLable: {
     color: '#fff',
@@ -103,5 +81,9 @@ const styles = StyleSheet.create({
   validationText: {
     color: 'red',
     fontSize: hp('2%'),
+  },
+  checkText: {
+    color: 'red',
+    fontSize: 14,
   },
 });

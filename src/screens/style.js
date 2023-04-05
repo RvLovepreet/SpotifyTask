@@ -28,6 +28,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   btnContainer: {
+    marginTop: hp('2%'),
     paddingTop: hp('2%'),
   },
   alreadyUserContainer: {
