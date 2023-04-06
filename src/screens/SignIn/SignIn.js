@@ -18,6 +18,7 @@ const SignIn = ({ navigation }) => {
       .then(documentSnapshot => {
         if (user && userPassword === documentSnapshot.data().password) {
           dispatch(getuser(documentSnapshot.data()));
+          console.log(documentSnapshot.data());
           navigation.navigate(navigationScreen.SongsNavigation, {
             user: userEmail,
           });
@@ -33,7 +34,10 @@ const SignIn = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <CustomHeader title={constent.SignIn} />
+      <CustomHeader
+        title={constent.SignIn}
+        goToBack={() => navigation.goBack()}
+      />
       <View style={styles.containerContent}>
         <View style={styles.inputFieldContainer}>
           <CustomInputFeild

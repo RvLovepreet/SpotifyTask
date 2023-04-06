@@ -1,5 +1,5 @@
 export { default as Startup } from './Startup/Startup';
-export { default as CreatePlayList } from './CreatePlayList/CreatePlayList';
+export { default as PlayListSongList } from './PlayListSongList/PlayListSongList';
 export { default as PlayList } from './PlayList/PlayList';
 export { default as FavSong } from './FavSong/FavSong';
 export { default as ProfileSongScreen } from './ProfileSongScreen/ProfileSongScreen';

@@ -9,33 +9,36 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addFavSong } from '../../store/userSlice/userSlice';
 const SongListScreen = ({ navigation }) => {
   const [songList, setSongList] = useState();
-  const user = useSelector(data => data.user);
+  const user = useSelector(data => data.user.email);
   console.log(user);
   const dispatch = useDispatch();
   useEffect(() => {
     setUpPlayer();
   }, []);
-  useEffect(() => {}, [songList]);
+  /*  useEffect(() => {}, [songList]); */
   useEffect(() => {
-    navigation.addListener('focus', () => {
+    const addList = navigation.addListener('focus', () => {
       console.log('I am rendering');
       console.log(songList, 'song list 1');
       setList();
       console.log('Ii am rendering');
+      return addList;
     });
   }, [navigation]);
 
   const setList = async () => {
     console.log('1 am in setList');
-    console.log(songList, 'song List');
     try {
+      const song = await getSongList();
+      console.log(song, 'song List');
+      setSongList(song);
       const data = await TrackPlayer.getQueue();
-      console.log(songList, 'check 1');
+      console.log(song, 'check 1');
       console.log('no of Songs : ', data.length);
       await TrackPlayer.reset();
       const data1 = await TrackPlayer.getQueue();
       console.log('no of song', data1.length);
-      await TrackPlayer.add(songList);
+      await TrackPlayer.add(song);
       const data3 = await TrackPlayer.getQueue();
       console.log('no of song', data3);
     } catch (er) {
@@ -72,7 +75,7 @@ const SongListScreen = ({ navigation }) => {
     try {
       const list = await getSongList();
       setSongList(list);
-      console.log(list);
+
       await TrackPlayer.setupPlayer();
       await TrackPlayer.updateOptions({
         // Media controls capabilities
@@ -96,6 +99,7 @@ const SongListScreen = ({ navigation }) => {
   };
 
   const getSongList = async () => {
+    console.log('i am in getSong list');
     try {
       const songInfo = await firestore().collection(Collections.SongList).get();
       const songs = songInfo._docs;
@@ -117,16 +121,16 @@ const SongListScreen = ({ navigation }) => {
             <>
               <CustomSongListItem
                 onPlay={async () => {
-                  await TrackPlayer.reset();
+                  /*  await TrackPlayer.reset();
                   await TrackPlayer.add(songList);
                   const data = await TrackPlayer.getQueue();
                   console.log(data, 'song queue');
-                  console.log('play 1');
+                  console.log('play 1'); */
                   await TrackPlayer.skip(index);
                   await TrackPlayer.play();
                 }}
                 onPause={() => TrackPlayer.pause()}
-                addFav={() => addFav(item.title)}
+                addFav={async () => await addFav(item.title)}
                 title={item.title}
                 lyrics={item.artist}
                 src={{ uri: item.artwork }}

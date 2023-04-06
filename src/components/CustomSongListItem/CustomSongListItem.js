@@ -13,6 +13,7 @@ const CustomSongListItem = ({
   onPlay,
   onPause,
   addFav,
+  removeFav,
 }) => {
   return (
     <>
@@ -25,7 +26,8 @@ const CustomSongListItem = ({
             <Text>
               <Text onPress={onPlay}>Play</Text>
               <Text onPress={onPause}>pause</Text>
-              <Text onPress={addFav}>Add Fav</Text>
+              {addFav ? <Text onPress={addFav}>Add Fav</Text> : null}
+              {removeFav ? <Text onPress={removeFav}>remove Fav</Text> : null}
             </Text>
           </View>
         </View>

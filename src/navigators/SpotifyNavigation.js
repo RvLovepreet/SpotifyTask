@@ -1,6 +1,11 @@
 import React from 'react';
 import { SafeAreaView, StatusBar } from 'react-native';
-import { SignIn, SignUp, ProfileSongScreen, CreatePlayList } from '../screens';
+import {
+  SignIn,
+  SignUp,
+  ProfileSongScreen,
+  PlayListSongList,
+} from '../screens';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { navigationScreen } from '../shared/constent';
@@ -27,8 +32,8 @@ const SpotifyNavigation = () => {
             component={SongsNavigation}
           />
           <Stack.Screen
-            name={navigationScreen.CreatePlayListScreen}
-            component={CreatePlayList}
+            name={navigationScreen.PlayListSongScreen}
+            component={PlayListSongList}
           />
         </Stack.Navigator>
       </NavigationContainer>

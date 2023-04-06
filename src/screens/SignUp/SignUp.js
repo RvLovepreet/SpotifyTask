@@ -11,6 +11,7 @@ import {
 } from '../../shared/constent';
 import { CustomHeader, CustomBtn, CustomInputFeild } from '../../components';
 import { styles } from '../style';
+import PlayList from '../PlayList/PlayList';
 const SignUp = ({ navigation }) => {
   const [username, setName] = useState();
   const [error, setError] = useState({
@@ -111,6 +112,7 @@ const SignUp = ({ navigation }) => {
         name: username,
         email: useremail,
         favSong: userFavSong,
+        playList: {},
         password: userpassword,
         phone: usermob,
       });
@@ -183,7 +185,7 @@ const SignUp = ({ navigation }) => {
               onPress={() => {
                 goToNext();
               }}
-              title={constent.SignIn}
+              title={constent.SignUp}
             />
           </View>
           <View style={styles.alreadyUserContainer}>

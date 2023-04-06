@@ -7,24 +7,26 @@ import { CustomSongListItem } from '../../components';
 import firestore from '@react-native-firebase/firestore';
 import { styles } from '../style';
 const FavSong = ({ navigation }) => {
-  const favSongName = useSelector(data => data.user.favSong);
-  console.log(favSongName, 'favsong from useSelector');
+  const user = useSelector(data => data.user);
+  const favSongName = user.favSong;
+  const userEmail = user.email;
   const [favSongList, setFavSongList] = useState();
   const [favSongTitle, setFavSongTitle] = useState(favSongName);
-  useEffect(() => {
+  /*  useEffect(() => {
     getFavouriteSong();
-  }, []);
-  useEffect(() => {
-    /*  getFavouriteSong(); */
+  }, []); */
+  /*  useEffect(() => {
+    /*  getFavouriteSong();
   }, [favSongList]);
-  useEffect(() => {}, [favSongTitle]);
+  useEffect(() => {}, [favSongTitle]); */
   useEffect(() => {
-    navigation.addListener('focus', () => {
+    const addList = navigation.addListener('focus', e => {
       console.log('I am rendering fav ');
       getFavouriteSong();
       setList();
       console.log('Ii am rendering fav');
     });
+    return addList;
   }, [navigation]);
   const setList = async () => {
     console.log('1 am in setList');
@@ -63,7 +65,21 @@ const FavSong = ({ navigation }) => {
       console.log(err);
     }
   };
-
+  const removeFav = async songTitle => {
+    try {
+      await firestore()
+        .collection(Collections.Users)
+        .doc(userEmail)
+        .update({
+          favSong: firestore.FieldValue.arrayRemove(songTitle),
+        });
+      console.log('removed song ');
+      getFavouriteSong();
+      setList();
+    } catch (err) {
+      console.log(err);
+    }
+  };
   /*
   const getSongList = async () => {
     try {
@@ -87,17 +103,17 @@ const FavSong = ({ navigation }) => {
             <>
               <CustomSongListItem
                 onPlay={async () => {
-                  console.log('play 1');
+                  /* console.log('play 1');
                   const data = await TrackPlayer.getQueue();
                   console.log(data);
                   await TrackPlayer.reset();
-                  await TrackPlayer.add(favSongList);
+                  await TrackPlayer.add(favSongList); */
                   await TrackPlayer.skip(index);
                   await TrackPlayer.play();
                   console.log('play 2');
                 }}
                 onPause={() => TrackPlayer.pause()}
-                /*        addFav={() => addFav(item.title)} */
+                removeFav={() => removeFav(item.title)}
                 title={item.title}
                 lyrics={item.artist}
                 src={{ uri: item.artwork }}

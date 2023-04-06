@@ -3,12 +3,16 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import { Icons } from '../../shared/constent';
 
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-const CustomHeader = ({ title }) => {
+const CustomHeader = ({ title, goToBack }) => {
   return (
     <View style={styles.headerContainer}>
+      {goToBack ? (
+        <TouchableOpacity onPress={goToBack}>{Icons.Back}</TouchableOpacity>
+      ) : null}
       <Text style={styles.headerTitle}>{title}</Text>
     </View>
   );

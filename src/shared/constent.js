@@ -1,3 +1,5 @@
+import FontIcon from 'react-native-vector-icons/FontAwesome';
+import IoniconsIcon from 'react-native-vector-icons/Ionicons';
 export const constent = {
   SignUp: 'Sign Up',
   SignIn: 'Sign In',
@@ -28,6 +30,10 @@ export const Collections = {
   SongList: 'songList',
 };
 
+export const Icons = {
+  Back: <IoniconsIcon name="ios-arrow-back-sharp" size={30} color="#fff" />,
+  Close: <IoniconsIcon name="ios-close" size={30} color="#fff" />,
+};
 export const navigationScreen = {
   SignUpScreen: 'SignUp',
   SignInScreen: 'SignIn',
@@ -35,6 +41,7 @@ export const navigationScreen = {
   SongsNavigation: 'SongsNavigation',
   PlayListScreen: 'SongListScreen',
   CreatePlayListScreen: 'CreatePlayListScreen',
+  PlayListSongScreen: 'PlayListSongScreen',
 };
 export const fontSize = {};
 
