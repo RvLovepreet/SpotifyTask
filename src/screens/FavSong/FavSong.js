@@ -8,10 +8,10 @@ import firestore from '@react-native-firebase/firestore';
 import { styles } from '../style';
 const FavSong = ({ navigation }) => {
   const user = useSelector(data => data.user);
-  const favSongName = user.favSong;
+  /*  const favSongName = user.favSong; */
   const userEmail = user.email;
   const [favSongList, setFavSongList] = useState();
-  const [favSongTitle, setFavSongTitle] = useState(favSongName);
+  /*  const [favSongTitle, setFavSongTitle] = useState(favSongName); */
   /*  useEffect(() => {
     getFavouriteSong();
   }, []); */
@@ -22,7 +22,7 @@ const FavSong = ({ navigation }) => {
   useEffect(() => {
     const addList = navigation.addListener('focus', e => {
       console.log('I am rendering fav ');
-      getFavouriteSong();
+      getFavouriteSong2();
       setList();
       console.log('Ii am rendering fav');
     });
@@ -45,7 +45,33 @@ const FavSong = ({ navigation }) => {
       console.log(er);
     }
   };
-  const getFavouriteSong = async () => {
+
+  //new add song
+  const getFavouriteSong2 = async () => {
+    try {
+      const user = await firestore()
+        .collection(Collections.Users)
+        .doc(userEmail)
+        .get();
+      const favSongName = user._data.favSong;
+      const songInfo = await firestore().collection(Collections.SongList).get();
+      const songs = songInfo._docs;
+      const list = songs.map(ele => ele._data);
+      const result = favSongName.map(favSong =>
+        list.filter(ele => ele.title == favSong),
+      );
+      const newList = [];
+      result.forEach(ele => newList.push(ele[0]));
+      await TrackPlayer.reset();
+      const data = TrackPlayer.getQueue();
+      console.log(data, 'fav song');
+      await TrackPlayer.add(newList);
+      setFavSongList(newList);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  /* const getFavouriteSong = async () => {
     console.log(favSongName, 'check for updata favsong');
     try {
       const songInfo = await firestore().collection(Collections.SongList).get();
@@ -64,7 +90,7 @@ const FavSong = ({ navigation }) => {
     } catch (err) {
       console.log(err);
     }
-  };
+  }; */
   const removeFav = async songTitle => {
     try {
       await firestore()
@@ -74,7 +100,7 @@ const FavSong = ({ navigation }) => {
           favSong: firestore.FieldValue.arrayRemove(songTitle),
         });
       console.log('removed song ');
-      getFavouriteSong();
+      getFavouriteSong2();
       setList();
     } catch (err) {
       console.log(err);
@@ -92,7 +118,7 @@ const FavSong = ({ navigation }) => {
     }
   };
   */
-  const dispatch = useDispatch();
+
   return (
     <>
       <View style={styles.container}>
@@ -100,25 +126,23 @@ const FavSong = ({ navigation }) => {
         <FlatList
           data={favSongList}
           renderItem={({ item, index }) => (
-            <>
-              <CustomSongListItem
-                onPlay={async () => {
-                  /* console.log('play 1');
+            <CustomSongListItem
+              onPlay={async () => {
+                /* console.log('play 1');
                   const data = await TrackPlayer.getQueue();
                   console.log(data);
                   await TrackPlayer.reset();
                   await TrackPlayer.add(favSongList); */
-                  await TrackPlayer.skip(index);
-                  await TrackPlayer.play();
-                  console.log('play 2');
-                }}
-                onPause={() => TrackPlayer.pause()}
-                removeFav={() => removeFav(item.title)}
-                title={item.title}
-                lyrics={item.artist}
-                src={{ uri: item.artwork }}
-              />
-            </>
+                await TrackPlayer.skip(index);
+                await TrackPlayer.play();
+                console.log('play 2');
+              }}
+              onPause={() => TrackPlayer.pause()}
+              removeFav={() => removeFav(item.title)}
+              title={item.title}
+              lyrics={item.artist}
+              src={{ uri: item.artwork }}
+            />
           )}
         />
       </View>

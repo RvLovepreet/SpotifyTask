@@ -24,6 +24,8 @@ export const constent = {
   createStrongPassword: 'create Strong Password',
   invalidEmail: 'Please enter the valid email',
   invalidMobile: 'Please enter the valid mobile phone',
+  CreateNewPlayList: 'Create New Playlist',
+  NewPlayListName: 'PlayList Name',
 };
 export const Collections = {
   Users: 'users',
@@ -33,6 +35,8 @@ export const Collections = {
 export const Icons = {
   Back: <IoniconsIcon name="ios-arrow-back-sharp" size={30} color="#fff" />,
   Close: <IoniconsIcon name="ios-close" size={30} color="#fff" />,
+  FilledHeart: <IoniconsIcon name="heart" size={30} color="#fff" />,
+  Add: <IoniconsIcon name="add" size={30} color="#fff" />,
 };
 export const navigationScreen = {
   SignUpScreen: 'SignUp',

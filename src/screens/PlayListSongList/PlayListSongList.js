@@ -13,10 +13,6 @@ const PlayListSongList = ({ navigation, route }) => {
   const useremail = useSelector(data => data.user.email);
   const [playListsong, setPlayListSong] = useState();
   console.log(useremail);
-  /*  const obj = {};
-  obj[title] = ['chaala', 'ikko'];
-  console.log(obj); */
-
   useEffect(() => {
     const addList = navigation.addListener('focus', () => {
       getUserInfo();
@@ -32,7 +28,6 @@ const PlayListSongList = ({ navigation, route }) => {
       console.log(title, 'check 1');
       console.log(user._data.playList, 'check for map');
       const playListSongsTitle = user._data.playList[title];
-
       console.log(playListSongsTitle);
       const songInfo = await firestore().collection(Collections.SongList).get();
       const song = songInfo._docs;
@@ -40,20 +35,16 @@ const PlayListSongList = ({ navigation, route }) => {
       const result = playListSongsTitle.map(playlistSong =>
         list.filter(ele => ele.title == playlistSong),
       );
-
       const newList = [];
       result.forEach(ele => newList.push(ele[0]));
-
       await TrackPlayer.reset();
-
       await TrackPlayer.add(newList);
-
       setPlayListSong(newList);
     } catch (err) {
       console.log(err);
     }
   };
-  const updatePlaylist = async () => {
+  const updatePlayList = async index => {
     try {
       const user = await firestore()
         .collection(Collections.Users)
@@ -62,12 +53,14 @@ const PlayListSongList = ({ navigation, route }) => {
       console.log(title, 'check 1');
       const obj = user._data.playList;
       console.log(obj, 'object in onclick');
-      console.log(obj[title].push('ikko mikke'));
-      console.log(obj);
+      obj[title].splice(index, 1);
+      console.log(obj, 'check 111');
+
       await firestore().collection(Collections.Users).doc(useremail).update({
         playList: obj,
       });
       console.log('update');
+      getUserInfo();
     } catch (err) {
       console.log(err);
     }
@@ -75,7 +68,7 @@ const PlayListSongList = ({ navigation, route }) => {
   return (
     <View style={styles.container}>
       <CustomHeader goToBack={() => navigation.goBack()} title={title} />
-      <Text onPress={() => updatePlaylist()}> onClick</Text>
+
       <FlatList
         data={playListsong}
         renderItem={({ item, index }) => (
@@ -86,6 +79,7 @@ const PlayListSongList = ({ navigation, route }) => {
               console.log('play 2');
             }}
             onPause={() => TrackPlayer.pause()}
+            removeSongPlayList={() => updatePlayList(index)}
             title={item.title}
             lyrics={item.artist}
             src={{ uri: item.artwork }}
