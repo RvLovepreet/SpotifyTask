@@ -9,7 +9,8 @@ export const styles = StyleSheet.create({
   container: {
     width: wp('100%'),
     height: hp('100%'),
-    backgroundColor: '#16274a',
+    /* backgroundColor: '#16274a', */
+    backgroundColor: '#fff',
   },
   containerContent: {
     marginTop: hp('10%'),
@@ -42,6 +43,6 @@ export const styles = StyleSheet.create({
     fontSize: hp('2%'),
   },
   alreadyUserSignIn: {
-    color: '#6ffcba',
+    color: '#2960d6',
   },
 });

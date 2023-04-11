@@ -1,12 +1,29 @@
 import React, { useState } from 'react';
-import { View, TextInput, Text, StyleSheet } from 'react-native';
+import {
+  View,
+  TextInput,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-const CustomInputFeild = ({ title, required, setValues, error, value }) => {
+const CustomInputFeild = ({
+  title,
+  required,
+  setValues,
+  error,
+  value,
+  icon,
+  changeIcon,
+  visibility,
+  iconsecond,
+}) => {
   const [focus, setFocus] = useState(false);
   const [err, setErr] = useState(false);
+  const [visible, setVisible] = useState(visibility == true ? false : true);
   const check = () => {
     if (value === undefined) {
       console.log('okk');
@@ -14,27 +31,41 @@ const CustomInputFeild = ({ title, required, setValues, error, value }) => {
       value.length ? setErr(false) : setErr(true);
     }
   };
+  const visiblePassword = () => {
+    setVisible(!visible);
+  };
   return (
     <View style={styles.customInputFeildContainer}>
       <Text style={styles.customInputFeildLable}>
         {title}
         {required ? <Text style={styles.requiredSign}>*</Text> : null}
       </Text>
-      <TextInput
-        onFocus={() => setFocus(true)}
-        onBlur={() => {
-          setFocus(false);
-          check();
-        }}
-        style={[
-          focus ? styles.customInputFeildFocus : styles.customInputFeildOnBlur,
-          styles.customInputFeild,
-        ]}
-        onChangeText={txt => {
-          setValues(txt);
-          setErr(false);
-        }}
-      />
+      <View style={styles.inputContainer}>
+        <TextInput
+          onFocus={() => setFocus(true)}
+          onBlur={() => {
+            setFocus(false);
+            check();
+          }}
+          secureTextEntry={visible}
+          style={[
+            focus
+              ? styles.customInputFeildFocus
+              : styles.customInputFeildOnBlur,
+            styles.customInputFeild,
+          ]}
+          onChangeText={txt => {
+            setValues(txt);
+            setErr(false);
+          }}
+        />
+        {icon ? (
+          <TouchableOpacity onPress={visiblePassword} style={styles.iconStyle}>
+            <Text>{visible ? iconsecond : icon}</Text>
+          </TouchableOpacity>
+        ) : null}
+      </View>
+
       <Text style={{ height: 15 }}>
         {err ? <Text style={styles.checkText}>required</Text> : null}
         <Text style={styles.checkText}>{error}</Text>
@@ -53,27 +84,39 @@ const styles = StyleSheet.create({
     marginBottom: hp('.5%'),
     justifyContent: 'space-between',
   },
+  inputContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    width: '98%',
+    height: hp('6%'),
+  },
   customInputFeildLable: {
-    color: '#fff',
+    color: '#111',
     fontSize: hp('2.5%'),
+  },
+  iconStyle: {
+    position: 'absolute',
+    alignSelf: 'center',
+    right: wp('4%'),
   },
   requiredSign: {
     color: 'red',
     fontSize: hp('3%'),
   },
   customInputFeildOnBlur: {
-    borderWidth: 0,
+    borderWidth: 1,
   },
   customInputFeildFocus: {
     borderWidth: 1,
-    borderColor: '#6ffcba',
+
+    borderColor: '#2960d6',
   },
   customInputFeild: {
-    backgroundColor: '#3c4159',
-    height: hp('0'),
+    backgroundColor: '#fff',
+    height: '100%',
     fontSize: hp('3%'),
     paddingLeft: wp('3%'),
-    color: '#fff',
+    color: '#111',
     flex: 1,
     alignItems: 'center',
     borderRadius: 4,

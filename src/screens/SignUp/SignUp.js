@@ -8,6 +8,7 @@ import {
   mobregex,
   navigationScreen,
   Collections,
+  Icons,
 } from '../../shared/constent';
 import { CustomHeader, CustomBtn, CustomInputFeild } from '../../components';
 import { styles } from '../style';
@@ -113,6 +114,7 @@ const SignUp = ({ navigation }) => {
         email: useremail,
         favSong: userFavSong,
         playList: {},
+        history: [],
         password: userpassword,
         phone: usermob,
       });
@@ -154,12 +156,14 @@ const SignUp = ({ navigation }) => {
               title={constent.Name}
               setValues={txt => setName(txt)}
               required
+              visibility={true}
               value={username}
             />
             <CustomInputFeild
               title={constent.Email}
               setValues={txt => mangeEmail(txt)}
               required
+              visibility={true}
               value={useremail}
               error={error.emailErr}
             />
@@ -170,6 +174,9 @@ const SignUp = ({ navigation }) => {
               setValues={txt => mangePassword(txt)}
               value={userpassword}
               error={error.passwordErr}
+              icon={Icons.PasswordEye}
+              iconsecond={Icons.PasswordEyeClose}
+              visibility={false}
             />
 
             <CustomInputFeild
@@ -177,6 +184,7 @@ const SignUp = ({ navigation }) => {
               required
               setValues={txt => mangeMobileNo(txt)}
               value={usermob}
+              visibility={true}
               error={error.mobileErr}
             />
           </View>

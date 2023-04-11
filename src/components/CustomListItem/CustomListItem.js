@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     paddingRight: wp('1%'),
   },
   itemContent: {
-    color: '#fff',
+    color: '#111',
     fontSize: hp('3%'),
     fontWeight: '700',
   },

@@ -15,6 +15,7 @@ const PlayListSongList = ({ navigation, route }) => {
   console.log(useremail);
   useEffect(() => {
     const addList = navigation.addListener('focus', () => {
+      console.log('hello word');
       getUserInfo();
     });
     return addList;

@@ -5,12 +5,12 @@ import {
 } from 'react-native-responsive-screen';
 
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import { Icons } from '../../shared/constent';
+import { Icons, color } from '../../shared/constent';
 const CustomSongListItem = ({
   title,
   lyrics,
   src,
-  onPlay,
+  onPlay = () => {},
   onPause,
   addFav,
   removeFav,
@@ -26,21 +26,38 @@ const CustomSongListItem = ({
             <Text style={styles.SongTitle}>{title}</Text>
             <Text style={styles.Lyrics}>{lyrics}</Text>
             <Text>
-              <Text onPress={onPlay}>Play</Text>
-              <Text onPress={onPause}>pause</Text>
-              {addFav ? <Text onPress={addFav}>Add Fav</Text> : null}
-              {removeFav ? <Text onPress={removeFav}>remove Fav</Text> : null}
+              <TouchableOpacity onPress={onPlay}>
+                <Text style={styles.funBtn}>Play</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={onPause}>
+                <Text style={styles.funBtn}>pause</Text>
+              </TouchableOpacity>
+              {addFav ? (
+                <TouchableOpacity onPress={addFav}>
+                  <Text style={styles.funBtn}>Add Fav</Text>
+                </TouchableOpacity>
+              ) : null}
+              {removeFav ? (
+                <TouchableOpacity onPress={removeFav}>
+                  <Text style={styles.funBtn}>remove Fav</Text>
+                </TouchableOpacity>
+              ) : null}
               {addPlayList ? (
-                <Text onPress={addPlayList}>add playlist</Text>
+                <TouchableOpacity onPress={addPlayList}>
+                  <Text style={styles.funBtn}>add playlist</Text>
+                </TouchableOpacity>
               ) : null}
               {removeSongPlayList ? (
-                <Text onPress={removeSongPlayList}>Remove song</Text>
+                <TouchableOpacity onPress={removeSongPlayList}>
+                  <Text style={styles.funBtn}>Remove song</Text>
+                </TouchableOpacity>
               ) : null}
             </Text>
           </View>
           <View style={{ display: 'flex', flexDirection: 'row' }}>
-            <Text style={{ alignSelf: 'center' }}>{Icons.FilledHeart}</Text>
-            <Text style={{ alignSelf: 'center' }}>{Icons.Add}</Text>
+            {/*          <Text style={{ alignSelf: 'center' }}>{Icons.FilledHeart}</Text>
+            <Text style={{ alignSelf: 'center' }}>{Icons.Add}</Text> */}
+            {/*      <Text style={{ alignSelf: 'center' }}>{Icons.Pause}</Text> */}
           </View>
         </View>
       </TouchableOpacity>
@@ -61,6 +78,11 @@ const styles = StyleSheet.create({
     width: wp('15%'),
     height: hp('8%'),
   },
-  SongTitle: { color: '#fff', fontSize: hp('2.5%'), fontWeight: '800' },
-  Lyrics: { color: '#fff', fontSize: hp('2%'), fontWeight: '400' },
+  SongTitle: { color: '#111', fontSize: hp('2.5%'), fontWeight: '800' },
+  Lyrics: { color: '#111', fontSize: hp('2%'), fontWeight: '400' },
+  funBtn: {
+    marginLeft: wp('1%'),
+    color: color.firstColor,
+    fontSize: hp('2%'),
+  },
 });

@@ -10,10 +10,10 @@ import { CustomListItem } from '../../components';
 const PlayList = ({ navigation }) => {
   const [myPlayListName, setMyPlayListName] = useState([]);
   const useremail = useSelector(data => data.user.email);
-  useEffect(() => {
-    console.log('I am rendering');
+  /*   useEffect(() => {
+  /*   console.log('initial useEffect in Play List');
     playListName();
-  }, []);
+  }, []); */
   useEffect(() => {
     const addlist = navigation.addListener('focus', () => {
       console.log('hello am dfasa');
@@ -42,7 +42,7 @@ const PlayList = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View>
-        <Text onPress={() => console.log(myPlayListName)}>hello</Text>
+        {/*    <Text onPress={() => console.log(myPlayListName)}>hello</Text> */}
         <FlatList
           data={myPlayListName}
           renderItem={({ item }) => (

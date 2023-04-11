@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     paddingLeft: wp('2%'),
     paddingRight: wp('2%'),
     backgroundColor: '#16274a',
+    backgroundColor: '#2960d6',
   },
   headerTitle: {
     fontSize: hp('4%'),

@@ -20,7 +20,8 @@ export default CustomBtn;
 const styles = StyleSheet.create({
   CustomBtnContainer: {
     padding: hp('2%'),
-    backgroundColor: '#6ffcba',
+
+    backgroundColor: '#2960d6',
     display: 'flex',
     borderWidth: 0,
     borderRadius: 4,
@@ -29,6 +30,7 @@ const styles = StyleSheet.create({
   },
   btnTitile: {
     color: '#16274a',
+    color: '#fff',
     fontSize: hp('2.5%'),
     fontWeight: '600',
   },
