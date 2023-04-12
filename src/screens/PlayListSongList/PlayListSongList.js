@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { CustomHeader, CustomBtn, CustomInputFeild } from '../../components';
 import TrackPlayer from 'react-native-track-player';
 import { View, Text, FlatList } from 'react-native';
@@ -7,19 +7,26 @@ import { useSelector } from 'react-redux';
 import CustomSongListItem from '../../components/CustomSongListItem/CustomSongListItem';
 import firestore from '@react-native-firebase/firestore';
 import { Collections } from '../../shared/constent';
+import { useFocusEffect } from '@react-navigation/native';
+import { playSong } from '../../shared/sharedFunction/addHistory';
 const PlayListSongList = ({ navigation, route }) => {
   const title = route.params.item;
   console.log(title);
   const useremail = useSelector(data => data.user.email);
   const [playListsong, setPlayListSong] = useState();
   console.log(useremail);
-  useEffect(() => {
+  /*   useEffect(() => {
     const addList = navigation.addListener('focus', () => {
       console.log('hello word');
       getUserInfo();
     });
     return addList;
-  }, [navigation]);
+  }, [navigation]); */
+  useFocusEffect(
+    useCallback(() => {
+      getUserInfo();
+    }, []),
+  );
   const getUserInfo = async () => {
     try {
       const user = await firestore()
@@ -74,11 +81,12 @@ const PlayListSongList = ({ navigation, route }) => {
         data={playListsong}
         renderItem={({ item, index }) => (
           <CustomSongListItem
-            onPlay={async () => {
-              await TrackPlayer.skip(index);
+            onPlay={
+              () => playSong(Collections.Users, useremail, item.title, index)
+              /* await TrackPlayer.skip(index,);
               await TrackPlayer.play();
-              console.log('play 2');
-            }}
+              console.log('play 2'); */
+            }
             onPause={() => TrackPlayer.pause()}
             removeSongPlayList={() => updatePlayList(index)}
             title={item.title}

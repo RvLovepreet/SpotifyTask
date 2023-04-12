@@ -5,6 +5,7 @@ import {
   SignUp,
   ProfileSongScreen,
   PlayListSongList,
+  DemoScreen,
 } from '../screens';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
@@ -18,6 +19,7 @@ const SpotifyNavigation = () => {
       <NavigationContainer>
         <StatusBar />
         <Stack.Navigator screenOptions={{ headerShown: false, lazy: true }}>
+          {/* <Stack.Screen name="demo Screen" component={DemoScreen} /> */}
           <Stack.Screen
             name={navigationScreen.SignUpScreen}
             component={SignUp}

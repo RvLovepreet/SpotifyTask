@@ -1,4 +1,5 @@
 export { default as Startup } from './Startup/Startup';
+export { default as PremiumSongs } from './PremiumSong/PremiumSong';
 export { default as SongHistory } from './SongHistory/SongHistory';
 export { default as PlayListSongList } from './PlayListSongList/PlayListSongList';
 export { default as PlayList } from './PlayList/PlayList';
@@ -8,3 +9,4 @@ export { default as Example } from './Example/Example';
 export { default as SignUp } from './SignUp/SignUp';
 export { default as SignIn } from './SignIn/SignIn';
 export { default as SongListScreen } from './SongListScreen/SongListScreen';
+export { default as DemoScreen } from './DemoScreen/DemoScreen';

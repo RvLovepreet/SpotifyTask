@@ -1,20 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import TrackPlayer from 'react-native-track-player';
 import { CustomSongListItem } from '../../components';
 import { Collections } from '../../shared/constent';
 import { useSelector } from 'react-redux';
+import { useFocusEffect } from '@react-navigation/native';
+
 const SongHistory = ({ navigation }) => {
   const userEmail = useSelector(data => data.user.email);
   const [histroyList, setHistoryList] = useState();
-  useEffect(() => {
+  /*   useEffect(() => {
     const subcribe = navigation.addListener('focus', () => {
+      console.log('histroy i am in history');
+      console.log('histroy i am in history');
       getHistory();
     });
     return subcribe;
-  }, [navigation]);
+  }, [navigation]); */
 
+  useFocusEffect(
+    useCallback(() => {
+      console.log('history 1');
+      getHistory();
+    }, []),
+  );
   const getHistory = async () => {
     const user = await firestore()
       .collection(Collections.Users)

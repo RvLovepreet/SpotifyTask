@@ -1,5 +1,12 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { View, Text, FlatList, Modal, StyleSheet } from 'react-native';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import {
+  View,
+  Text,
+  FlatList,
+  Modal,
+  StyleSheet,
+  InteractionManager,
+} from 'react-native';
 import { CustomBtn, CustomInputFeild } from '../../components';
 import {
   widthPercentageToDP as wp,
@@ -12,9 +19,10 @@ import TrackPlayer, { Capability } from 'react-native-track-player';
 import firestore from '@react-native-firebase/firestore';
 import { styles } from '../style';
 import { useSelector } from 'react-redux';
-
+import { useFocusEffect } from '@react-navigation/native';
+import { playSong, addinHistory } from '../../shared/sharedFunction/addHistory';
 const SongListScreen = ({ navigation }) => {
-  const [songList, setSongList] = useState();
+  const [songList, setSongList] = useState([]);
   const selectedSong = useRef();
   const [modalShow, setModalShow] = useState(false);
   const [showInput, setshowInput] = useState(false);
@@ -24,22 +32,30 @@ const SongListScreen = ({ navigation }) => {
   const useremail = useSelector(data => data.user.email);
 
   useEffect(() => {
-    console.log('initial useEffect in Song List');
+    // console.log('initial useEffect in Song List');
     setUpPlayer();
   }, []);
 
-  useEffect(() => {
+  /*  useEffect(() => {
+    console.log('hi i am in songlist 1');
     const addList = navigation.addListener('focus', () => {
       setList();
+      console.log('hi i am in songlist');
       return addList;
     });
-  }, [navigation]);
-
+  }, [navigation]); */
+  useFocusEffect(
+    useCallback(() => {
+      const task = InteractionManager.runAfterInteractions(() => {
+        setList();
+      });
+      return () => task.cancel();
+    }, []),
+  );
   const setList = async () => {
     console.log('1 am in setList');
     try {
       const song = await getSongList();
-
       setSongList(song);
       const data = await TrackPlayer.getQueue();
       await TrackPlayer.reset();
@@ -50,7 +66,7 @@ const SongListScreen = ({ navigation }) => {
       console.log(er);
     }
   };
-  const addinHistory = async title => {
+  const addinHistory1 = async title => {
     console.log(title, 'history method');
     try {
       const data = await firestore()
@@ -76,17 +92,18 @@ const SongListScreen = ({ navigation }) => {
       console.log(err);
     }
   };
-  const playSong = async (title, index) => {
+  /* const playSong = async (title, index) => {
     try {
       console.log(title, index, 'index and title');
       await TrackPlayer.skip(index);
       await TrackPlayer.play();
       console.log('i am in play song functin');
-      addinHistory(title);
+      addinHistory(Collections.Users, useremail, title);
+      // addinHistory1(title);
     } catch (err) {
       console.log(err);
     }
-  };
+  }; */
 
   const addFav = async songTitle => {
     try {
@@ -120,11 +137,8 @@ const SongListScreen = ({ navigation }) => {
         compactCapabilities: [Capability.Play, Capability.Pause],
         // Icons for the notification on Android (if you don't like the default ones)
       });
-      /*     let track1 = {
-        url: 'https://firebasestorage.googleapis.com/v0/b/spotify-b1e05.appspot.com/o/Rutba%20-%20Satinder%20Sartaaj.mp3?alt=media&token=40157745-4fcb-4987-917a-0ec326c6a6e1',
-      }; */
+
       await TrackPlayer.add([list]);
-      const data = await TrackPlayer.getQueue();
     } catch (err) {
       console.log(err);
     }
@@ -134,8 +148,13 @@ const SongListScreen = ({ navigation }) => {
     try {
       const songInfo = await firestore().collection(Collections.SongList).get();
       const songs = songInfo._docs;
-      const list = songs.map(ele => ele._data);
-      return list;
+      const list1 = songs.map(ele => ele._data);
+      /*   console.log(list1); */
+      const premiumSong = list1.filter(ele => ele.price);
+      const normalSong = list1.filter(ele => !ele.price);
+      /* console.log(premiumSong, 'premium Song');
+      console.log(normalSong, 'normal Song'); */
+      return normalSong;
     } catch (err) {
       console.log(err);
     }
@@ -170,11 +189,7 @@ const SongListScreen = ({ navigation }) => {
         .doc(useremail)
         .get();
       const obj = user._data.playList;
-      console.log(obj);
-      console.log(playListTitle, 'check 2');
-      console.log(obj.myPlaylist, 'check 2');
-      console.log(obj[playlist], 'check 1');
-      console.log(obj[playlist].push(addSongInPlayList));
+      obj[playlist].push(addSongInPlayList);
       await firestore().collection(Collections.Users).doc(useremail).update({
         playList: obj,
       });
@@ -214,7 +229,7 @@ const SongListScreen = ({ navigation }) => {
               console.log('clicked');
               /*   const temp = await TrackPlayer.play(); */
               /*      console.log(temp, 'clicked 1'); */
-              playSong(item.title, index);
+              playSong(Collections.User, useremail, item.title, index);
             }}
             onPause={() => TrackPlayer.pause()}
             addFav={async () => await addFav(item.title)}
@@ -270,7 +285,6 @@ const SongListScreen = ({ navigation }) => {
               )}
             />
           </View>
-
           <CustomBtn
             title={constent.CreateNewPlayList}
             onPress={() => {

@@ -53,6 +53,7 @@ export const navigationScreen = {
   MyFav: 'My Favourite',
   PlayList: 'Play List',
   History: 'History',
+  PremiumSongs: 'Premium',
   CreatePlayListScreen: 'CreatePlayListScreen',
   PlayListSongScreen: 'PlayListSongScreen',
 };
