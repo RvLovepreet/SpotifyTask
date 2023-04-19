@@ -50,16 +50,16 @@ const SignIn = ({ navigation }) => {
       alert(constent.RequiredFeild);
     }
   }; */
-  const getUser1 = () => {
-    signIn({ phone_number: userEmail, password: userPassword });
-    console.log(result, ' i am in getUser function');
-    if (result.data?.status) {
-      console.log('hello');
-      console.log(result.data.token);
-      dispatch(addKey(result.data.token));
-      navigation.navigate(navigationScreen.SongsNavigation, {
-        user: email,
-      });
+  const getUser1 = async () => {
+    const res = await signIn({
+      phone_number: userEmail,
+      password: userPassword,
+    });
+    if (res.data.status) {
+      dispatch(addKey(res.data.token));
+      navigation.navigate(navigationScreen.SongsNavigation);
+    } else {
+      console.log('error');
     }
   };
   return (

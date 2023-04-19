@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>283362292426-t0bc7trtqaai62hcpnurog8vab3gasl9.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.283362292426-t0bc7trtqaai62hcpnurog8vab3gasl9</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB0MRBiw9TVVeY6-Xz7S5gdRZ9pmwGczA0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>283362292426</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.myspotify</string>
+	<key>PROJECT_ID</key>
+	<string>spotify-b1e05</string>
+	<key>STORAGE_BUCKET</key>
+	<string>spotify-b1e05.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:283362292426:ios:9ee93ffe016b9882c03a33</string>
+	<key>DATABASE_URL</key>
+	<string>https://spotify-b1e05-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>

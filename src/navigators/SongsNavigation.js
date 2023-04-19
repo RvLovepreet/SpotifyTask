@@ -23,8 +23,8 @@ const SongsNavigation = ({ navigation }) => {
         })}
       >
         <Tab.Screen name={navigationScreen.Songs} component={SongListScreen} />
-        {/*  <Tab.Screen name={navigationScreen.MyFav} component={FavSong} />
-        <Tab.Screen name={navigationScreen.PlayList} component={PlayList} />
+        {/*     <Tab.Screen name={navigationScreen.MyFav} component={FavSong} />
+          <Tab.Screen name={navigationScreen.PlayList} component={PlayList} />
         <Tab.Screen name={navigationScreen.History} component={SongHistory} /> */}
         {/*         <Tab.Screen
           name={navigationScreen.PremiumSongs}
