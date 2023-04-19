@@ -7,12 +7,13 @@ import {
   StyleSheet,
   InteractionManager,
 } from 'react-native';
-import { CustomBtn, CustomInputFeild } from '../../components';
+import { CustomBtn, CustomInputFeild, CustomModal } from '../../components';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import { Icons } from '../../shared/constent';
+import { AppKilledPlaybackBehavior } from 'react-native-track-player';
+import { Icons, navigationScreen } from '../../shared/constent';
 import { CustomSongListItem } from '../../components';
 import { Collections, constent } from '../../shared/constent';
 import TrackPlayer, { Capability } from 'react-native-track-player';
@@ -20,7 +21,10 @@ import firestore from '@react-native-firebase/firestore';
 import { styles } from '../style';
 import { useSelector } from 'react-redux';
 import { useFocusEffect } from '@react-navigation/native';
-import { playSong, addinHistory } from '../../shared/sharedFunction/addHistory';
+import { playSong } from '../../shared/sharedFunction/addHistory';
+import { getSong } from '../../store/songSlice/songSlice';
+import { useDispatch } from 'react-redux';
+import { removeKey } from '../../store/theme';
 const SongListScreen = ({ navigation }) => {
   const [songList, setSongList] = useState([]);
   const selectedSong = useRef();
@@ -29,21 +33,14 @@ const SongListScreen = ({ navigation }) => {
   const [playlistName, setPlaylistName] = useState('');
   const [playListTitle, setPlayListTitle] = useState();
   const [addSongInPlayList, setAddSongInPlayList] = useState();
-  const useremail = useSelector(data => data.user.email);
-
+  /* const [curPlay, setCurPlay, getCurPlay] = useState(0); */
+  /*   const useremail = useSelector(data => data.user.email); */
+  const useremail = 'chicmic@gmail.com';
+  const dispatch = useDispatch();
   useEffect(() => {
-    // console.log('initial useEffect in Song List');
     setUpPlayer();
   }, []);
 
-  /*  useEffect(() => {
-    console.log('hi i am in songlist 1');
-    const addList = navigation.addListener('focus', () => {
-      setList();
-      console.log('hi i am in songlist');
-      return addList;
-    });
-  }, [navigation]); */
   useFocusEffect(
     useCallback(() => {
       const task = InteractionManager.runAfterInteractions(() => {
@@ -73,9 +70,7 @@ const SongListScreen = ({ navigation }) => {
         .collection(Collections.Users)
         .doc(useremail)
         .get();
-      /* .update({
-          history: firestore.FieldValue.arrayUnion(title),
-        }); */
+
       const historyList = data._data.history;
       console.log(historyList);
       const newHistory = historyList.reverse();
@@ -92,18 +87,6 @@ const SongListScreen = ({ navigation }) => {
       console.log(err);
     }
   };
-  /* const playSong = async (title, index) => {
-    try {
-      console.log(title, index, 'index and title');
-      await TrackPlayer.skip(index);
-      await TrackPlayer.play();
-      console.log('i am in play song functin');
-      addinHistory(Collections.Users, useremail, title);
-      // addinHistory1(title);
-    } catch (err) {
-      console.log(err);
-    }
-  }; */
 
   const addFav = async songTitle => {
     try {
@@ -126,6 +109,11 @@ const SongListScreen = ({ navigation }) => {
       await TrackPlayer.setupPlayer();
       await TrackPlayer.updateOptions({
         // Media controls capabilities
+        android: {
+          // This is the default behavior
+          appKilledPlaybackBehavior:
+            AppKilledPlaybackBehavior.StopPlaybackAndRemoveNotification,
+        },
         capabilities: [
           Capability.Play,
           Capability.Pause,
@@ -149,11 +137,9 @@ const SongListScreen = ({ navigation }) => {
       const songInfo = await firestore().collection(Collections.SongList).get();
       const songs = songInfo._docs;
       const list1 = songs.map(ele => ele._data);
-      /*   console.log(list1); */
       const premiumSong = list1.filter(ele => ele.price);
       const normalSong = list1.filter(ele => !ele.price);
-      /* console.log(premiumSong, 'premium Song');
-      console.log(normalSong, 'normal Song'); */
+      dispatch(getSong(list1));
       return normalSong;
     } catch (err) {
       console.log(err);
@@ -219,17 +205,24 @@ const SongListScreen = ({ navigation }) => {
       }
     }
   };
+  //log Out function
+  const logOutFun = () => {
+    dispatch(removeKey(''));
+    navigation.reset({
+      index: 0,
+      routes: [{ name: navigationScreen.SignInScreen }],
+    });
+  };
   return (
     <View style={styles.container}>
+      <CustomBtn title={constent.LogOut} onPress={() => logOutFun()} />
       <FlatList
         data={songList}
         renderItem={({ item, index }) => (
           <CustomSongListItem
-            onPlay={async () => {
+            onPlay={() => {
               console.log('clicked');
-              /*   const temp = await TrackPlayer.play(); */
-              /*      console.log(temp, 'clicked 1'); */
-              playSong(Collections.User, useremail, item.title, index);
+              playSong(Collections.Users, useremail, item.title, index);
             }}
             onPause={() => TrackPlayer.pause()}
             addFav={async () => await addFav(item.title)}
@@ -250,6 +243,10 @@ const SongListScreen = ({ navigation }) => {
           />
         )}
       />
+      {/*   <ModalForCreatList
+        modalShow={modalShow}
+        closeModal={() => setModalShow(false)}
+      /> */}
 
       <Modal
         animationType="fade"
@@ -293,6 +290,9 @@ const SongListScreen = ({ navigation }) => {
           />
         </View>
       </Modal>
+      <View>
+        <Text>hello</Text>
+      </View>
     </View>
   );
 };

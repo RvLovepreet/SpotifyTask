@@ -108,7 +108,6 @@ const styles = StyleSheet.create({
   },
   customInputFeildFocus: {
     borderWidth: 1,
-
     borderColor: '#2960d6',
   },
   customInputFeild: {

@@ -1,4 +1,4 @@
-/* import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import userSlice from './userSlice/userSlice';
 import {
@@ -57,12 +57,14 @@ const store = configureStore({
 const persistor = persistStore(store);
 setupListeners(store.dispatch);
 export { store, persistor };
- */
+/*
+import songSlice from './songSlice/songSlice';
 import { configureStore } from '@reduxjs/toolkit';
 import userSlice from './userSlice/userSlice';
 const store = configureStore({
   reducer: {
     user: userSlice,
+    songs: songSlice,
   },
 });
-export default store;
+export default store; */

@@ -11,32 +11,40 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { navigationScreen } from '../shared/constent';
 import SongsNavigation from './SongsNavigation';
+import { useSelector } from 'react-redux';
 
 const Stack = createStackNavigator();
 const SpotifyNavigation = () => {
+  const key = useSelector(data => data.theme);
+  console.log(key, 'hekklldskfdsklf;lkg');
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <NavigationContainer>
         <StatusBar />
         <Stack.Navigator screenOptions={{ headerShown: false, lazy: true }}>
-          {/* <Stack.Screen name="demo Screen" component={DemoScreen} /> */}
-          <Stack.Screen
-            name={navigationScreen.SignUpScreen}
-            component={SignUp}
-          />
-          <Stack.Screen
-            name={navigationScreen.SignInScreen}
-            component={SignIn}
-          />
+          {/*    <Stack.Screen name="demo Screen" component={DemoScreen} /> */}
+          {!key ? (
+            <>
+              <Stack.Screen
+                name={navigationScreen.SignUpScreen}
+                component={SignUp}
+              />
+              <Stack.Screen
+                name={navigationScreen.SignInScreen}
+                component={SignIn}
+              />
+            </>
+          ) : (
+            <Stack.Screen
+              name={navigationScreen.SongsNavigation}
+              component={SongsNavigation}
+            />
+          )}
 
-          <Stack.Screen
-            name={navigationScreen.SongsNavigation}
-            component={SongsNavigation}
-          />
-          <Stack.Screen
+          {/*      <Stack.Screen
             name={navigationScreen.PlayListSongScreen}
             component={PlayListSongList}
-          />
+          /> */}
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>

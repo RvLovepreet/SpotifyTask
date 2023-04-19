@@ -1,0 +1,182 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4,
+						5
+					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.13"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "rngesturehandler_codegen_autolinked_build",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.13"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "/Users/chicmic/Desktop/reactnative/cloneProject/Spotify/node_modules/react-native-gesture-handler/android/build/generated/source/codegen/jni",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "reactnativemmkv_autolinked_build",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.13"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "/Users/chicmic/Desktop/reactnative/cloneProject/Spotify/node_modules/react-native-mmkv/android/build/generated/source/codegen/jni",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"build" : "RNCViewPager_autolinked_build",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.13"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "/Users/chicmic/Desktop/reactnative/cloneProject/Spotify/node_modules/react-native-pager-view/android/build/generated/source/codegen/jni",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "safeareacontext_autolinked_build",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.13"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "/Users/chicmic/Desktop/reactnative/cloneProject/Spotify/node_modules/react-native-safe-area-context/android/src/main/jni",
+					"targetIndexes" : 
+					[
+						5
+					]
+				},
+				{
+					"build" : "rnscreens_autolinked_build",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.13"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "/Users/chicmic/Desktop/reactnative/cloneProject/Spotify/node_modules/react-native-screens/android/src/main/jni",
+					"targetIndexes" : 
+					[
+						4
+					]
+				}
+			],
+			"name" : "RelWithDebInfo",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5
+					],
+					"name" : "appmodules",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "appmodules::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appmodules-RelWithDebInfo-a2f06b3c6224a8fd0aec.json",
+					"name" : "appmodules",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "react_codegen_RNCViewPager::@9f68986783bbdbca59bc",
+					"jsonFile" : "target-react_codegen_RNCViewPager-RelWithDebInfo-afd755003d7c52bb5f8b.json",
+					"name" : "react_codegen_RNCViewPager",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "react_codegen_reactnativemmkv::@53a90ad335aa3dba27a5",
+					"jsonFile" : "target-react_codegen_reactnativemmkv-RelWithDebInfo-1c35344511cde47d42b0.json",
+					"name" : "react_codegen_reactnativemmkv",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "react_codegen_rngesturehandler_codegen::@39f233abcd2c728bc6ec",
+					"jsonFile" : "target-react_codegen_rngesturehandler_codegen-RelWithDebInfo-c1ab37a825d5e473b265.json",
+					"name" : "react_codegen_rngesturehandler_codegen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "react_codegen_rnscreens::@25bcbd507e98d3a854ad",
+					"jsonFile" : "target-react_codegen_rnscreens-RelWithDebInfo-b73d6cff6cfefc5b5937.json",
+					"name" : "react_codegen_rnscreens",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "react_codegen_safeareacontext::@7984cd80db47aa7b952a",
+					"jsonFile" : "target-react_codegen_safeareacontext-RelWithDebInfo-c631d9f8746c0e7c63cd.json",
+					"name" : "react_codegen_safeareacontext",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/chicmic/Desktop/reactnative/cloneProject/Spotify/android/app/.cxx/RelWithDebInfo/1g5f12g1/arm64-v8a",
+		"source" : "/Users/chicmic/Desktop/reactnative/cloneProject/Spotify/node_modules/react-native/ReactAndroid/cmake-utils/default-app-setup"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 1
+	}
+}

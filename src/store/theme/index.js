@@ -1,9 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 const slice = createSlice({
-    name: 'theme',
-    initialState: { theme: 'default', darkMode: null },
-    reducers: {
-        changeTheme: (state, { payload: { theme, darkMode } }) => {
+  name: 'key',
+  initialState: { key: '' },
+  reducers: {
+    addKey: (state, action) => {
+      return (state = action.payload);
+    },
+    removeKey: (state, action) => {
+      return (state = action.payload);
+    },
+    /*  changeTheme: (state, { payload: { theme, darkMode } }) => {
             if (typeof theme !== 'undefined') {
                 state.theme = theme;
             }
@@ -20,8 +26,9 @@ const slice = createSlice({
                     state.darkMode = darkMode;
                 }
             }
-        },
-    },
+        }, */
+  },
 });
-export const { changeTheme, setDefaultTheme } = slice.actions;
+export const { /* changeTheme, setDefaultTheme */ addKey, removeKey } =
+  slice.actions;
 export default slice.reducer;

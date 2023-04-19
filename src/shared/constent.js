@@ -4,6 +4,7 @@ import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 export const constent = {
   SignUp: 'Sign Up',
   SignIn: 'Sign In',
+  LogOut: 'Log Out',
   SongList: 'Latest Song',
   Name: 'Name',
   Email: 'Email',
@@ -27,6 +28,8 @@ export const constent = {
   invalidMobile: 'Please enter the valid mobile phone',
   CreateNewPlayList: 'Create New Playlist',
   NewPlayListName: 'PlayList Name',
+  FavouriteSong: 'FavSong',
+  History: 'History',
 };
 export const Collections = {
   Users: 'users',
@@ -42,6 +45,7 @@ export const Icons = {
   Pause: <IoniconsIcon name="pause-outline" size={30} color="#111" />,
   PasswordEye: <IoniconsIcon name="eye" size={30} color="#111" />,
   PasswordEyeClose: <IoniconsIcon name="eye-off" size={30} color="#111" />,
+  Dollar: <FontAwesomeIcon name="dollar" size={18} color="#2960d6" />,
 };
 export const navigationScreen = {
   SignUpScreen: 'SignUp',

@@ -79,3 +79,9 @@
 9	2619	1681303937	CMakeFiles/appmodules.dir/OnLoad.cpp.o	51a315ef491a3e89
 9	11218	1681303946	CMakeFiles/appmodules.dir/Users/chicmic/Desktop/reactnative/cloneProject/Spotify/android/app/build/generated/rncli/src/main/jni/rncli.cpp.o	2e1d8584e86a4281
 11219	11562	1681303946	/Users/chicmic/Desktop/reactnative/cloneProject/Spotify/android/app/build/intermediates/cxx/Debug/5m4d6513/obj/x86/libappmodules.so	58e4ee3d1c3c8069
+1	15	0	/Users/chicmic/Desktop/reactnative/cloneProject/Spotify/android/app/.cxx/Debug/5m4d6513/x86/CMakeFiles/cmake.verify_globs	a629b9b0e1cd0704
+15	129	1681366660	build.ninja	93e49b11d73fd92f
+0	13	0	/Users/chicmic/Desktop/reactnative/cloneProject/Spotify/android/app/.cxx/Debug/5m4d6513/x86/CMakeFiles/cmake.verify_globs	a629b9b0e1cd0704
+11	2500	1681366663	CMakeFiles/appmodules.dir/OnLoad.cpp.o	51a315ef491a3e89
+11	10664	1681366671	CMakeFiles/appmodules.dir/Users/chicmic/Desktop/reactnative/cloneProject/Spotify/android/app/build/generated/rncli/src/main/jni/rncli.cpp.o	2e1d8584e86a4281
+10664	11012	1681366671	/Users/chicmic/Desktop/reactnative/cloneProject/Spotify/android/app/build/intermediates/cxx/Debug/5m4d6513/obj/x86/libappmodules.so	58e4ee3d1c3c8069

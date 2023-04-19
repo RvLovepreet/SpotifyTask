@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
+import { useDispatch } from 'react-redux';
+import { useSignUpMutation } from '../../services/modules/users';
 import {
   constent,
   emailregex,
@@ -14,6 +16,8 @@ import { CustomHeader, CustomBtn, CustomInputFeild } from '../../components';
 import { styles } from '../style';
 import PlayList from '../PlayList/PlayList';
 const SignUp = ({ navigation }) => {
+  const [signUp, result] = useSignUpMutation();
+  console.log(result, 'check for signUp');
   const [username, setName] = useState();
   const [error, setError] = useState({
     emailErr: '',
@@ -38,7 +42,15 @@ const SignUp = ({ navigation }) => {
           validation(constent.Email) &&
           validation(constent.moblie)
         ) {
-          if (setData()) {
+          if (
+            signUp({
+              phone_number: usermob,
+              name: username,
+              password: userpassword,
+              detail: 0,
+            })
+          ) {
+            alert('data saved!');
             navigation.navigate(navigationScreen.SignInScreen);
           }
         } else {

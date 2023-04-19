@@ -8,16 +8,6 @@ import { constent, Icons, navigationScreen } from '../shared/constent';
 import PremiumSongs from '../screens/PremiumSong/PremiumSong';
 const Tab = createMaterialTopTabNavigator();
 const SongsNavigation = ({ navigation }) => {
-  const setIcons = (route, color) => {
-    let iconname;
-    switch (route.name) {
-      case 'Songs':
-        return Icons.Back;
-
-      default:
-        break;
-    }
-  };
   return (
     <>
       <CustomHeader title="Profile" />
@@ -33,13 +23,13 @@ const SongsNavigation = ({ navigation }) => {
         })}
       >
         <Tab.Screen name={navigationScreen.Songs} component={SongListScreen} />
-        <Tab.Screen name={navigationScreen.MyFav} component={FavSong} />
+        {/*  <Tab.Screen name={navigationScreen.MyFav} component={FavSong} />
         <Tab.Screen name={navigationScreen.PlayList} component={PlayList} />
-        <Tab.Screen name={navigationScreen.History} component={SongHistory} />
-        <Tab.Screen
+        <Tab.Screen name={navigationScreen.History} component={SongHistory} /> */}
+        {/*         <Tab.Screen
           name={navigationScreen.PremiumSongs}
           component={PremiumSongs}
-        />
+        /> */}
       </Tab.Navigator>
     </>
   );

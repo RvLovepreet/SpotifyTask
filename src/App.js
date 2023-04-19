@@ -3,17 +3,19 @@ import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/lib/integration/react';
-/* import { store, persistor } from './store'; */
+import { store, persistor } from './store';
 
 import ApplicationNavigator from './navigators/Application';
 import SpotifyNavigation from './navigators/SpotifyNavigation';
 import './translations';
 import DemoScreen from './screens/DemoScreen/DemoScreen';
-import store from './store';
+/* import store from './store'; */
 const App = () => {
   return (
     <Provider store={store}>
-      <SpotifyNavigation />
+      <PersistGate loading={null} persistor={persistor}>
+        <SpotifyNavigation />
+      </PersistGate>
     </Provider>
   );
 };
