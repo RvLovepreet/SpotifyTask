@@ -21,7 +21,7 @@ export const getFilterSongs = async (userEmail, songs, operation, title) => {
     result.forEach(ele => newList.push(ele[0]));
     await TrackPlayer.reset();
     await TrackPlayer.add(newList);
-    console.log(newList);
+
     return newList;
   } catch (err) {
     console.log(err);

@@ -7,13 +7,13 @@ import {
   StyleSheet,
   InteractionManager,
 } from 'react-native';
-import { CustomBtn, CustomInputFeild, CustomModal } from '../../components';
+import { CustomBtn, CustomInputFeild } from '../../components';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import { AppKilledPlaybackBehavior } from 'react-native-track-player';
-import { Icons, navigationScreen } from '../../shared/constent';
+import { Icons } from '../../shared/constent';
 import { CustomSongListItem } from '../../components';
 import { Collections, constent } from '../../shared/constent';
 import TrackPlayer, { Capability } from 'react-native-track-player';
@@ -24,7 +24,6 @@ import { useFocusEffect } from '@react-navigation/native';
 import { playSong } from '../../shared/sharedFunction/addHistory';
 import { getSong } from '../../store/songSlice/songSlice';
 import { useDispatch } from 'react-redux';
-import { removeKey } from '../../store/theme';
 const SongListScreen = ({ navigation }) => {
   const [songList, setSongList] = useState([]);
   const selectedSong = useRef();
@@ -33,9 +32,8 @@ const SongListScreen = ({ navigation }) => {
   const [playlistName, setPlaylistName] = useState('');
   const [playListTitle, setPlayListTitle] = useState();
   const [addSongInPlayList, setAddSongInPlayList] = useState();
-  /* const [curPlay, setCurPlay, getCurPlay] = useState(0); */
-  /*   const useremail = useSelector(data => data.user.email); */
-  const useremail = 'chicmic@gmail.com';
+  const useremail = useSelector(data => data.userSlice.email);
+
   const dispatch = useDispatch();
   useEffect(() => {
     setUpPlayer();
@@ -50,41 +48,13 @@ const SongListScreen = ({ navigation }) => {
     }, []),
   );
   const setList = async () => {
-    console.log('1 am in setList');
     try {
       const song = await getSongList();
       setSongList(song);
-      const data = await TrackPlayer.getQueue();
       await TrackPlayer.reset();
-      const data1 = await TrackPlayer.getQueue();
       await TrackPlayer.add(song);
-      const data3 = await TrackPlayer.getQueue();
     } catch (er) {
       console.log(er);
-    }
-  };
-  const addinHistory1 = async title => {
-    console.log(title, 'history method');
-    try {
-      const data = await firestore()
-        .collection(Collections.Users)
-        .doc(useremail)
-        .get();
-
-      const historyList = data._data.history;
-      console.log(historyList);
-      const newHistory = historyList.reverse();
-      console.log(newHistory);
-      if (newHistory[0] != title) {
-        newHistory.unshift(title);
-        console.log(newHistory);
-        await firestore().collection(Collections.Users).doc(useremail).update({
-          history: newHistory,
-        });
-      }
-      console.log('history added');
-    } catch (err) {
-      console.log(err);
     }
   };
 
@@ -137,7 +107,6 @@ const SongListScreen = ({ navigation }) => {
       const songInfo = await firestore().collection(Collections.SongList).get();
       const songs = songInfo._docs;
       const list1 = songs.map(ele => ele._data);
-      const premiumSong = list1.filter(ele => ele.price);
       const normalSong = list1.filter(ele => !ele.price);
       dispatch(getSong(list1));
       return normalSong;
@@ -154,11 +123,7 @@ const SongListScreen = ({ navigation }) => {
         .doc(useremail)
         .get();
       const playlist = user._data.playList;
-      const nameList = [];
-      for (let key in playlist) {
-        nameList.push(key);
-        console.log(key);
-      }
+      const nameList = Object.keys(playlist);
       setPlayListTitle(nameList);
       setModalShow(true);
       setAddSongInPlayList(selectedSong.current);
@@ -205,23 +170,14 @@ const SongListScreen = ({ navigation }) => {
       }
     }
   };
-  //log Out function
-  const logOutFun = () => {
-    dispatch(removeKey(''));
-    navigation.reset({
-      index: 0,
-      routes: [{ name: navigationScreen.SignInScreen }],
-    });
-  };
+
   return (
     <View style={styles.container}>
-      <CustomBtn title={constent.LogOut} onPress={() => logOutFun()} />
       <FlatList
         data={songList}
         renderItem={({ item, index }) => (
           <CustomSongListItem
             onPlay={() => {
-              console.log('clicked');
               playSong(Collections.Users, useremail, item.title, index);
             }}
             onPause={() => TrackPlayer.pause()}
@@ -232,10 +188,6 @@ const SongListScreen = ({ navigation }) => {
             addPausebtn={async () => {
               const trackIndex = await TrackPlayer.getCurrentTrack();
               const track = await TrackPlayer.getTrack(trackIndex);
-              if (track) {
-                console.log(trackIndex);
-              }
-              console.log(track);
             }}
             title={item.title}
             lyrics={item.artist}

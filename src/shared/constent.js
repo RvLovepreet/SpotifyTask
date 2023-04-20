@@ -1,6 +1,7 @@
 import FontIcon from 'react-native-vector-icons/FontAwesome';
 import IoniconsIcon from 'react-native-vector-icons/Ionicons';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 export const constent = {
   SignUp: 'Sign Up',
   SignIn: 'Sign In',
@@ -37,14 +38,19 @@ export const Collections = {
 };
 
 export const Icons = {
-  Back: <IoniconsIcon name="ios-arrow-back-sharp" size={30} color="#fff" />,
+  Back: (
+    <MaterialCommunityIcons name="keyboard-backspace" size={30} color="#fff" />
+  ),
+  /*   Back: <IoniconsIcon name="ios-arrow-back-sharp" size={30} color="#fff" />, */
   Close: <IoniconsIcon name="ios-close" size={30} color="#111" />,
   FilledHeart: <IoniconsIcon name="heart" size={30} color="#111" />,
   Add: <IoniconsIcon name="add" size={30} color="#111" />,
   History: <FontAwesomeIcon name="history" size={30} color="#fff" />,
   Pause: <IoniconsIcon name="pause-outline" size={30} color="#111" />,
-  PasswordEye: <IoniconsIcon name="eye" size={30} color="#111" />,
-  PasswordEyeClose: <IoniconsIcon name="eye-off" size={30} color="#111" />,
+  PasswordEye: <MaterialCommunityIcons name="eye" size={30} color="#111" />,
+  PasswordEyeClose: (
+    <MaterialCommunityIcons name="eye-off" size={30} color="#111" />
+  ),
   Dollar: <FontAwesomeIcon name="dollar" size={18} color="#2960d6" />,
 };
 export const navigationScreen = {

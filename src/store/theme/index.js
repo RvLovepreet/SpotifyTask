@@ -9,6 +9,12 @@ const slice = createSlice({
     removeKey: (state, action) => {
       return (state = action.payload);
     },
+    /*  getuser(state, action) {
+      return (state = action.payload);
+    },
+    addFavSong(state, action) {
+      return (state = action.payload);
+    }, */
     /*  changeTheme: (state, { payload: { theme, darkMode } }) => {
             if (typeof theme !== 'undefined') {
                 state.theme = theme;
@@ -29,6 +35,11 @@ const slice = createSlice({
         }, */
   },
 });
-export const { /* changeTheme, setDefaultTheme */ addKey, removeKey } =
-  slice.actions;
+export const {
+  /* changeTheme, setDefaultTheme */
+  /*   getuser,
+  addFavSong, */
+  addKey,
+  removeKey,
+} = slice.actions;
 export default slice.reducer;

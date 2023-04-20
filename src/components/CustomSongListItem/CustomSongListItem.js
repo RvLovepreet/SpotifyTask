@@ -19,7 +19,6 @@ const CustomSongListItem = ({
   price,
   curPlay,
 }) => {
-  console.log(curPlay, 'i am playing');
   return (
     <>
       <TouchableOpacity onPress={onPlay}>

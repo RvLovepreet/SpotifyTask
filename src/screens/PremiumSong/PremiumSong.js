@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Text, View, FlatList } from 'react-native';
+import { View, FlatList } from 'react-native';
 import { useSelector } from 'react-redux';
 import { CustomSongListItem } from '../../components';
 const PremiumSongs = () => {
-  const songs = useSelector(data => data.songs);
+  const songs = useSelector(data => data.songSlice);
   const [premiumSong, setPremiumSong] = useState(
     songs.filter(ele => ele.price),
   );

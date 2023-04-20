@@ -5,12 +5,12 @@ import {
 } from 'react-native-responsive-screen';
 
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
-const CustomBtn = ({ title, onPress }) => {
+const CustomBtn = ({ title, onPress, style }) => {
   return (
     <>
       <TouchableOpacity onPress={onPress}>
-        <View style={styles.CustomBtnContainer}>
-          <Text style={styles.btnTitile}>{title}</Text>
+        <View style={[styles.CustomBtnContainer, style]}>
+          <Text style={[styles.btnTitile, style]}>{title}</Text>
         </View>
       </TouchableOpacity>
     </>
@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   btnTitile: {
-    color: '#16274a',
     color: '#fff',
     fontSize: hp('2.5%'),
     fontWeight: '600',

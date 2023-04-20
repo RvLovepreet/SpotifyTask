@@ -1,6 +1,6 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
-import userSlice from './userSlice/userSlice';
+import { getDefaultMiddleware } from '@reduxjs/toolkit';
 import {
   persistReducer,
   persistStore,
@@ -12,11 +12,16 @@ import {
   REGISTER,
 } from 'redux-persist';
 import { MMKV } from 'react-native-mmkv';
-import { api } from '../services/api';
-import theme from './theme';
+/* import { api } from '../services/api'; */
+/* import theme from './theme'; */
+import songSlice from './songSlice/songSlice';
+import userSlice from './userSlice/userSlice';
+
 const reducers = combineReducers({
-  theme,
-  [api.reducerPath]: api.reducer,
+  /* theme, */
+  songSlice,
+  userSlice,
+  /*   [api.reducerPath]: api.reducer, */
 });
 const storage = new MMKV();
 export const reduxStorage = {
@@ -41,18 +46,21 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, reducers);
 const store = configureStore({
   reducer: persistedReducer,
-  middleware: getDefaultMiddleware => {
+  middleware: getDefaultMiddleware({
+    serializableCheck: false,
+  }),
+  /*  middleware: getDefaultMiddleware => {
     const middlewares = getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(api.middleware);
-    /*    if (__DEV__ && !process.env.JEST_WORKER_ID) {
+    }).concat(api.middleware); */
+  /*    if (__DEV__ && !process.env.JEST_WORKER_ID) {
       const createDebugger = require('redux-flipper').default;
       middlewares.push(createDebugger());
     } */
-    return middlewares;
-  },
+  /*     return middlewares; */
+  /*   }, */
 });
 const persistor = persistStore(store);
 setupListeners(store.dispatch);

@@ -8,4 +8,10 @@ module.exports = async function () {
   // but it will be used later in the "Receiving Events" section
   TrackPlayer.addEventListener(Event.RemotePlay, () => TrackPlayer.play());
   TrackPlayer.addEventListener(Event.RemotePause, () => TrackPlayer.pause());
+  TrackPlayer.addEventListener(Event.RemotePause, () =>
+    TrackPlayer.skipToNext(),
+  );
+  TrackPlayer.addEventListener(Event.RemotePause, () =>
+    TrackPlayer.skipToPrevious(),
+  );
 };

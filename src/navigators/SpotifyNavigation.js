@@ -12,17 +12,25 @@ import { NavigationContainer } from '@react-navigation/native';
 import { navigationScreen } from '../shared/constent';
 import SongsNavigation from './SongsNavigation';
 import { useSelector } from 'react-redux';
-
+const AuthenticationScreens = createStackNavigator();
+const Authentication = () => {
+  return (
+    <AuthenticationScreens.Navigator>
+      <AuthenticationScreens.Screen name="demo Screen" component={DemoScreen} />
+    </AuthenticationScreens.Navigator>
+  );
+};
 const Stack = createStackNavigator();
 const SpotifyNavigation = () => {
-  const key = useSelector(data => data.theme);
-  console.log(key, 'hekklldskfdsklf;lkg');
+  const key = useSelector(data => data.userSlice.email);
+  console.log('pesist data form key', key);
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <NavigationContainer>
         <StatusBar />
         <Stack.Navigator screenOptions={{ headerShown: false, lazy: true }}>
           {/*    <Stack.Screen name="demo Screen" component={DemoScreen} /> */}
+
           {!key ? (
             <>
               <Stack.Screen
@@ -41,10 +49,10 @@ const SpotifyNavigation = () => {
             />
           )}
 
-          {/*      <Stack.Screen
+          <Stack.Screen
             name={navigationScreen.PlayListSongScreen}
             component={PlayListSongList}
-          /> */}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>

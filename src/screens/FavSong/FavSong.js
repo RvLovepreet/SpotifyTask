@@ -11,9 +11,9 @@ import { playSong } from '../../shared/sharedFunction/addHistory';
 import { getFilterSongs } from '../../shared/sharedFunction/filterSong';
 
 const FavSong = ({ navigation }) => {
-  const user = useSelector(data => data.user);
+  const user = useSelector(data => data.userSlice);
   const userEmail = user.email;
-  const songs = useSelector(data => data.songs);
+  const songs = useSelector(data => data.songSlice);
   const [favSongList, setFavSongList] = useState();
 
   useFocusEffect(

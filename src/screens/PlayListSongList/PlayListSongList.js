@@ -9,15 +9,14 @@ import firestore from '@react-native-firebase/firestore';
 import { Collections } from '../../shared/constent';
 import { useFocusEffect } from '@react-navigation/native';
 import { playSong } from '../../shared/sharedFunction/addHistory';
-
 import { getFilterSongs } from '../../shared/sharedFunction/filterSong';
+import songSlice from '../../store/songSlice/songSlice';
 const PlayListSongList = ({ navigation, route }) => {
   const title = route.params.item;
   console.log(title);
-  const useremail = useSelector(data => data.user.email);
-  const songs = useSelector(data => data.songs);
+  const useremail = useSelector(data => data.userSlice.email);
+  const songs = useSelector(data => data.songSlice);
   const [playListsong, setPlayListSong] = useState([]);
-  console.log(useremail);
 
   useFocusEffect(
     useCallback(() => {

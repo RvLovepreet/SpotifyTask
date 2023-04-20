@@ -1,16 +1,26 @@
 import React from 'react';
-import { View, Text } from 'react-native';
 import { SongListScreen, FavSong, PlayList, SongHistory } from '../screens';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import CustomBtn from '../components/CustomBtn/CustomBtn';
 import CustomHeader from '../components/CustomHeader/CustomHeader';
-import { constent, Icons, navigationScreen } from '../shared/constent';
+import { navigationScreen } from '../shared/constent';
 import PremiumSongs from '../screens/PremiumSong/PremiumSong';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { removeuser } from '../store/userSlice/userSlice';
 const Tab = createMaterialTopTabNavigator();
 const SongsNavigation = ({ navigation }) => {
+  const name = useSelector(data => data.userSlice.name);
+  const dispatch = useDispatch();
+  const logOutFun = () => {
+    dispatch(removeuser(''));
+    navigation.reset({
+      index: 0,
+      routes: [{ name: navigationScreen.SignInScreen }],
+    });
+  };
   return (
     <>
-      <CustomHeader title="Profile" />
+      <CustomHeader title={name} onbtnClick={() => logOutFun()} />
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarLabelStyle: {
@@ -19,17 +29,16 @@ const SongsNavigation = ({ navigation }) => {
             fontWeight: '700',
           },
           tabBarStyle: { backgroundColor: '#2960d6' },
-          /*   tabBarIcon: ({ color }) => setIcons(route, color), */
         })}
       >
         <Tab.Screen name={navigationScreen.Songs} component={SongListScreen} />
-        {/*     <Tab.Screen name={navigationScreen.MyFav} component={FavSong} />
-          <Tab.Screen name={navigationScreen.PlayList} component={PlayList} />
-        <Tab.Screen name={navigationScreen.History} component={SongHistory} /> */}
-        {/*         <Tab.Screen
+        <Tab.Screen name={navigationScreen.MyFav} component={FavSong} />
+        <Tab.Screen name={navigationScreen.PlayList} component={PlayList} />
+        <Tab.Screen name={navigationScreen.History} component={SongHistory} />
+        <Tab.Screen
           name={navigationScreen.PremiumSongs}
           component={PremiumSongs}
-        /> */}
+        />
       </Tab.Navigator>
     </>
   );

@@ -4,16 +4,26 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import { Icons } from '../../shared/constent';
-
+import { constent, color } from '../../shared/constent';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import CustomBtn from '../CustomBtn/CustomBtn';
 
-const CustomHeader = ({ title, goToBack }) => {
+const CustomHeader = ({ title, goToBack, onbtnClick }) => {
   return (
     <View style={styles.headerContainer}>
-      {goToBack ? (
-        <TouchableOpacity onPress={goToBack}>{Icons.Back}</TouchableOpacity>
+      <View style={styles.headerContent}>
+        {goToBack ? (
+          <TouchableOpacity onPress={goToBack}>{Icons.Back}</TouchableOpacity>
+        ) : null}
+        <Text style={styles.headerTitle}>{title}</Text>
+      </View>
+      {onbtnClick ? (
+        <CustomBtn
+          style={styles.logOutBtn}
+          title={constent.LogOut}
+          onPress={onbtnClick}
+        />
       ) : null}
-      <Text style={styles.headerTitle}>{title}</Text>
     </View>
   );
 };
@@ -25,17 +35,27 @@ const styles = StyleSheet.create({
     height: hp('10%'),
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
     alignItems: 'center',
     paddingTop: wp('2%'),
     paddingLeft: wp('2%'),
     paddingRight: wp('2%'),
-    backgroundColor: '#16274a',
     backgroundColor: '#2960d6',
+  },
+  headerContent: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   headerTitle: {
     fontSize: hp('4%'),
     color: '#fff',
     fontWeight: '900',
+  },
+  logOutBtn: {
+    color: color.firstColor,
+    padding: 4,
+    borderRadius: 10,
+    backgroundColor: '#fff',
   },
 });

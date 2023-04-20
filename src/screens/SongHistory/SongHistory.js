@@ -7,8 +7,8 @@ import { useFocusEffect } from '@react-navigation/native';
 import { getFilterSongs } from '../../shared/sharedFunction/filterSong';
 import { constent } from '../../shared/constent';
 const SongHistory = ({ navigation }) => {
-  const userEmail = useSelector(data => data.user.email);
-  const songs = useSelector(data => data.songs);
+  const userEmail = useSelector(data => data.userSlice.email);
+  const songs = useSelector(data => data.songSlice);
   const [histroyList, setHistoryList] = useState();
   useFocusEffect(
     useCallback(() => {
