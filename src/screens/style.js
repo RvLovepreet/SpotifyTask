@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
   container: {
     width: wp('100%'),
     height: hp('100%'),
-    /* backgroundColor: '#16274a', */
+    flex: 1,
     backgroundColor: '#fff',
   },
   containerContent: {

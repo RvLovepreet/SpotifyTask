@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ActivityIndicator } from 'react-native';
 import { CustomHeader, CustomInputFeild, CustomBtn } from '../../components';
 import { styles } from '../style';
 import { useSignInMutation } from '../../services/modules/users';
@@ -19,6 +19,7 @@ const SignIn = ({ navigation }) => {
   /*   const email = 'chicmic@gmail.com'; */
   const [userEmail, setEmail] = useState();
   const [userPassword, setPassword] = useState();
+
   // const [signIn, result] = useSignInMutation();
   const key = useSelector(data => data.userSlice.email);
   console.log(key, 'dsfasdfasdkfasgkdjkgh');

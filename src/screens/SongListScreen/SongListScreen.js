@@ -14,8 +14,8 @@ import {
 } from 'react-native-responsive-screen';
 import { AppKilledPlaybackBehavior } from 'react-native-track-player';
 import { Icons } from '../../shared/constent';
-import { CustomSongListItem } from '../../components';
-import { Collections, constent } from '../../shared/constent';
+import { CustomSongListItem, Loader } from '../../components';
+import { Collections, constent, color } from '../../shared/constent';
 import TrackPlayer, { Capability } from 'react-native-track-player';
 import firestore from '@react-native-firebase/firestore';
 import { styles } from '../style';
@@ -31,6 +31,7 @@ const SongListScreen = ({ navigation }) => {
   const [showInput, setshowInput] = useState(false);
   const [playlistName, setPlaylistName] = useState('');
   const [playListTitle, setPlayListTitle] = useState();
+  const [showActive, setShowActive] = useState(false);
   const [addSongInPlayList, setAddSongInPlayList] = useState();
   const useremail = useSelector(data => data.userSlice.email);
 
@@ -49,12 +50,15 @@ const SongListScreen = ({ navigation }) => {
   );
   const setList = async () => {
     try {
+      setShowActive(true);
       const song = await getSongList();
       setSongList(song);
       await TrackPlayer.reset();
       await TrackPlayer.add(song);
     } catch (er) {
       console.log(er);
+    } finally {
+      setShowActive(false);
     }
   };
 
@@ -173,28 +177,32 @@ const SongListScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <FlatList
-        data={songList}
-        renderItem={({ item, index }) => (
-          <CustomSongListItem
-            onPlay={() => {
-              playSong(Collections.Users, useremail, item.title, index);
-            }}
-            onPause={() => TrackPlayer.pause()}
-            addFav={async () => await addFav(item.title)}
-            addPlayList={() => {
-              createPlaylist(item.title);
-            }}
-            addPausebtn={async () => {
-              const trackIndex = await TrackPlayer.getCurrentTrack();
-              const track = await TrackPlayer.getTrack(trackIndex);
-            }}
-            title={item.title}
-            lyrics={item.artist}
-            src={{ uri: item.artwork }}
-          />
-        )}
-      />
+      {showActive ? (
+        <Loader show={showActive} />
+      ) : (
+        <FlatList
+          data={songList}
+          renderItem={({ item, index }) => (
+            <CustomSongListItem
+              onPlay={() => {
+                playSong(Collections.Users, useremail, item.title, index);
+              }}
+              onPause={() => TrackPlayer.pause()}
+              addFav={async () => await addFav(item.title)}
+              addPlayList={() => {
+                createPlaylist(item.title);
+              }}
+              addPausebtn={async () => {
+                const trackIndex = await TrackPlayer.getCurrentTrack();
+                const track = await TrackPlayer.getTrack(trackIndex);
+              }}
+              title={item.title}
+              lyrics={item.artist}
+              src={{ uri: item.artwork }}
+            />
+          )}
+        />
+      )}
       {/*   <ModalForCreatList
         modalShow={modalShow}
         closeModal={() => setModalShow(false)}
@@ -242,9 +250,6 @@ const SongListScreen = ({ navigation }) => {
           />
         </View>
       </Modal>
-      <View>
-        <Text>hello</Text>
-      </View>
     </View>
   );
 };

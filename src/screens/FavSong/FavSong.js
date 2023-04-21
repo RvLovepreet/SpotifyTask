@@ -3,7 +3,7 @@ import TrackPlayer from 'react-native-track-player';
 import { View, FlatList, InteractionManager } from 'react-native';
 import { useSelector } from 'react-redux';
 import { constent, Collections } from '../../shared/constent';
-import { CustomSongListItem } from '../../components';
+import { CustomSongListItem, Loader } from '../../components';
 import firestore from '@react-native-firebase/firestore';
 import { styles } from '../style';
 import { useFocusEffect } from '@react-navigation/native';
@@ -15,7 +15,7 @@ const FavSong = ({ navigation }) => {
   const userEmail = user.email;
   const songs = useSelector(data => data.songSlice);
   const [favSongList, setFavSongList] = useState();
-
+  const [showLoader, setShowLoader] = useState(false);
   useFocusEffect(
     useCallback(() => {
       setList();
@@ -24,6 +24,7 @@ const FavSong = ({ navigation }) => {
 
   const setList = async () => {
     try {
+      setShowLoader(true);
       const list = await getFilterSongs(
         userEmail,
         songs,
@@ -32,6 +33,8 @@ const FavSong = ({ navigation }) => {
       setFavSongList(list);
     } catch (err) {
       console.log(err);
+    } finally {
+      setShowLoader(false);
     }
   };
 
@@ -73,21 +76,25 @@ const FavSong = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <FlatList
-        data={favSongList}
-        renderItem={({ item, index }) => (
-          <CustomSongListItem
-            onPlay={() =>
-              playSong(Collections.Users, userEmail, item.title, index)
-            }
-            onPause={() => TrackPlayer.pause()}
-            removeFav={() => removeFav(item.title)}
-            title={item.title}
-            lyrics={item.artist}
-            src={{ uri: item.artwork }}
-          />
-        )}
-      />
+      {showLoader ? (
+        <Loader show={showLoader} />
+      ) : (
+        <FlatList
+          data={favSongList}
+          renderItem={({ item, index }) => (
+            <CustomSongListItem
+              onPlay={() =>
+                playSong(Collections.Users, userEmail, item.title, index)
+              }
+              onPause={() => TrackPlayer.pause()}
+              removeFav={() => removeFav(item.title)}
+              title={item.title}
+              lyrics={item.artist}
+              src={{ uri: item.artwork }}
+            />
+          )}
+        />
+      )}
     </View>
   );
 };
