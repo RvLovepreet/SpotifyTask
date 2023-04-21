@@ -38,11 +38,9 @@ export const Collections = {
 };
 
 export const Icons = {
-  Back: (
-    <MaterialCommunityIcons name="keyboard-backspace" size={30} color="#fff" />
-  ),
+  Back: <FontAwesomeIcon name="step-backward" size={30} color="#fff" />,
   /*   Back: <IoniconsIcon name="ios-arrow-back-sharp" size={30} color="#fff" />, */
-  Close: <IoniconsIcon name="ios-close" size={30} color="#111" />,
+  Close: <FontAwesomeIcon name="close" size={30} color="#111" />,
   FilledHeart: <IoniconsIcon name="heart" size={30} color="#111" />,
   Add: <IoniconsIcon name="add" size={30} color="#111" />,
   History: <FontAwesomeIcon name="history" size={30} color="#fff" />,

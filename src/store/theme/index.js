@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 const slice = createSlice({
   name: 'key',
-  initialState: { key: '' },
+  initialState: {},
   reducers: {
     addKey: (state, action) => {
       return (state = action.payload);

@@ -6,13 +6,14 @@ import { navigationScreen } from '../shared/constent';
 import PremiumSongs from '../screens/PremiumSong/PremiumSong';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { removeuser } from '../store/userSlice/userSlice';
+import { removeKey } from '../store/theme';
+
 const Tab = createMaterialTopTabNavigator();
 const SongsNavigation = ({ navigation }) => {
-  const name = useSelector(data => data.userSlice.name);
+  const name = useSelector(data => data.theme.name);
   const dispatch = useDispatch();
   const logOutFun = () => {
-    dispatch(removeuser(''));
+    dispatch(removeKey(''));
     navigation.reset({
       index: 0,
       routes: [{ name: navigationScreen.SignInScreen }],

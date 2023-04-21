@@ -22,7 +22,7 @@ const Authentication = () => {
 };
 const Stack = createStackNavigator();
 const SpotifyNavigation = () => {
-  const key = useSelector(data => data.userSlice.email);
+  const key = useSelector(data => data.theme.email);
   console.log('pesist data form key', key);
   return (
     <SafeAreaView style={{ flex: 1 }}>

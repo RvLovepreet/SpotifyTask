@@ -4,7 +4,7 @@ import { CustomHeader, CustomInputFeild, CustomBtn } from '../../components';
 import { styles } from '../style';
 import { useSignInMutation } from '../../services/modules/users';
 import { useDispatch } from 'react-redux';
-/* import { addKey } from '../../store/theme'; */
+import { addKey } from '../../store/theme';
 import { useSelector } from 'react-redux';
 import {
   constent,
@@ -20,7 +20,8 @@ const SignIn = ({ navigation }) => {
   const [userEmail, setEmail] = useState();
   const [userPassword, setPassword] = useState();
   // const [signIn, result] = useSignInMutation();
-  const key = useSelector(data => data.theme);
+  const key = useSelector(data => data.userSlice.email);
+  console.log(key, 'dsfasdfasdkfasgkdjkgh');
   const getUser = () => {
     try {
       if (userEmail.length && userPassword.length) {
@@ -30,7 +31,7 @@ const SignIn = ({ navigation }) => {
           .get()
           .then(documentSnapshot => {
             if (user && userPassword === documentSnapshot.data().password) {
-              /*   dispatch(addKey(documentSnapshot.data().email)); */
+              dispatch(addKey(documentSnapshot.data()));
               dispatch(getuser(documentSnapshot.data()));
               navigation.navigate(navigationScreen.SongsNavigation, {
                 user: userEmail,
